@@ -29,56 +29,56 @@ end
 
 class AboutKeywords < EdgeCase::Koan
 
-  #def test_missing_keyword
-  #  keywords = {:amount => "10.00",
-  #              :firstname => "FisrtName",
-  #              :lastname => "LastName",
-  #              :card_type => "Visa",
-  #              :cardnumber => "4111111111111111",
-  #              :cvv => "111"}
-  #
-  #  AboutKeywordsController.new(keywords).run :create
-  #end
-  #
-  #def test_invalid_identifier
-  #  keywords = {:amount => "10.00",
-  #              :firstname => "FisrtName",
-  #              :lastname => "LastName",
-  #              :street => "123 oak hill lane",
-  #              :city => "Austin",
-  #              :state => "Texas",
-  #              :card_type => "Visa",
-  #              :cardnumber => "4111111111111111",
-  #              :cvv => "111",
-  #              :exp_date => "05/09/2014"}
-  #
-  #  AboutKeywordsController.new(keywords).run :create
-  #end
-  #
-  #def test_radio_options
-  #  keywords = {:amount => "10.00",
-  #              :firstname => "FisrtName",
-  #              :lastname => "LastName",
-  #              :card_type => "American Express",
-  #              :cardnumber => "4111111111111111",
-  #              :cvv => "111",
-  #              :exp_date => "05/09/2014"}
-  #
-  #  AboutKeywordsController.new(keywords).run :create
-  #end
-  #
-  #def test_select_list
-  #  keywords = {:amount => "10.00",
-  #              :firstname => "FisrtName",
-  #              :lastname => "LastName",
-  #              :gift_type => "Business",
-  #              :card_type => "American Express",
-  #              :cardnumber => "4111111111111111",
-  #              :cvv => "111",
-  #              :exp_date => "05/09/2014"}
-  #
-  #  AboutKeywordsController.new(keywords).run :create
-  #end
+  def test_missing_keyword
+    keywords = {:amount => "10.00",
+                :firstname => "FisrtName",
+                :lastname => "LastName",
+                :card_type => "Visa",
+                :cardnumber => "4111111111111111",
+                :cvv => "111"}
+
+    AboutKeywordsController.new(keywords).run :create
+  end
+
+  def test_invalid_identifier
+    keywords = {:amount => "10.00",
+                :firstname => "FisrtName",
+                :lastname => "LastName",
+                :street => "123 oak hill lane",
+                :city => "Austin",
+                :state => "Texas",
+                :card_type => "Visa",
+                :cardnumber => "4111111111111111",
+                :cvv => "111",
+                :exp_date => "05/09/2014"}
+
+    AboutKeywordsController.new(keywords).run :create
+  end
+
+  def test_radio_options
+    keywords = {:amount => "10.00",
+                :firstname => "FisrtName",
+                :lastname => "LastName",
+                :card_type => "American Express",
+                :cardnumber => "4111111111111111",
+                :cvv => "111",
+                :exp_date => "05/09/2014"}
+
+    AboutKeywordsController.new(keywords).run :create
+  end
+
+  def test_select_list
+    keywords = {:amount => "10.00",
+                :firstname => "FisrtName",
+                :lastname => "LastName",
+                :gift_type => "Business",
+                :card_type => "American Express",
+                :cardnumber => "4111111111111111",
+                :cvv => "111",
+                :exp_date => "05/09/2014"}
+
+    AboutKeywordsController.new(keywords).run :create
+  end
 
   def test_add_keywords
     keywords = {}
