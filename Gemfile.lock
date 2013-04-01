@@ -1,0 +1,60 @@
+GIT
+  remote: git://github.com/convio/watir-webdriver.git
+  revision: c2b0540b30aef1cb175825e24e7bf63b23f5b4f4
+  specs:
+    watir-webdriver (0.6.2.1)
+      selenium-webdriver (>= 2.18.0)
+
+GIT
+  remote: git://github.com/convio/watirmark.git
+  revision: 5eafc6f2a67183585f9bd9254768f2353c69dc78
+  specs:
+    watirmark (5.14.39)
+      activesupport (~> 3.1.11)
+      american_date (~> 1.0)
+      i18n (~> 0.6.1)
+      logger (~> 1.2.8)
+      nokogiri (~> 1.5.6)
+      rubigen (~> 1.5.8)
+      selenium-webdriver (~> 2.30.0)
+      uuid (~> 2.3.6)
+      watir-webdriver (>= 0.6.1)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    activesupport (3.1.12)
+      multi_json (~> 1.0)
+    american_date (1.1.0)
+    childprocess (0.3.9)
+      ffi (~> 1.0, >= 1.0.11)
+    ffi (1.6.0)
+    ffi (1.6.0-x86-mingw32)
+    i18n (0.6.4)
+    logger (1.2.8)
+    macaddr (1.6.1)
+      systemu (~> 2.5.0)
+    multi_json (1.7.2)
+    nokogiri (1.5.9)
+    nokogiri (1.5.9-x86-mingw32)
+    rake (0.9.2.2)
+    rubigen (1.5.8)
+      activesupport (>= 2.3.5, < 3.2.0)
+    rubyzip (0.9.9)
+    selenium-webdriver (2.30.0)
+      childprocess (>= 0.2.5)
+      multi_json (~> 1.0)
+      rubyzip
+      websocket (~> 1.0.4)
+    systemu (2.5.2)
+    uuid (2.3.7)
+      macaddr (~> 1.0)
+    websocket (1.0.7)
+
+PLATFORMS
+  x86-mingw32
+
+DEPENDENCIES
+  rake (= 0.9.2.2)
+  watir-webdriver!
+  watirmark!
