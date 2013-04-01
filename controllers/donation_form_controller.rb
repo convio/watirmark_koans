@@ -16,10 +16,6 @@ end
 class DonationFormController < Watirmark::WebPage::Controller
   @view = DonationFormView
 
-  def after_each
-    @view.close_browser
-  end
-
   def submit
     @view.submit.click
   end
