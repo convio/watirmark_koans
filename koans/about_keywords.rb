@@ -8,6 +8,7 @@ class AboutKeywordsView < DonationFormView
   keyword(:amount) { browser.text_field(:id, "amount") }
   keyword(:firstname) { browser.text_field(:id, "first_name") }
   keyword(:lastname) { browser.text_field(:id, "last_name") }
+  keyword(:gift_type) { browser.select_list(:id, "giftType") }
   keyword(:street)   { browser.text_field(:id, "street")}
   keyword(:city)   { browser.text_field(:id, "city")}
   keyword(:state)   { browser.select_list(:id, "state")}
@@ -58,6 +59,19 @@ class AboutKeywords < EdgeCase::Koan
     keywords = {:amount => "10.00",
                 :firstname => "FisrtName",
                 :lastname => "LastName",
+                :card_type => "American Express",
+                :cardnumber => "4111111111111111",
+                :cvv => "111",
+                :exp_date => "05/09/2014"}
+
+    AboutKeywordsController.new(keywords).run :create
+  end
+
+  def test_select_list
+    keywords = {:amount => "10.00",
+                :firstname => "FisrtName",
+                :lastname => "LastName",
+                :gift_type => "Business",
                 :card_type => "American Express",
                 :cardnumber => "4111111111111111",
                 :cvv => "111",
