@@ -7,6 +7,16 @@ begin
 rescue LoadError
 end
 
+begin
+  require 'watirmark'
+rescue LoadError
+  raise "You do not have watirmark, trying running a bundle install"
+end
+
+require File.dirname(__FILE__) + "/../controllers/donation_form_controller"
+require File.dirname(__FILE__) + "/extensions"
+require File.dirname(__FILE__) + "/post_checkers"
+
 # --------------------------------------------------------------------
 # Support code for the Ruby Koans.
 # --------------------------------------------------------------------
@@ -268,7 +278,7 @@ module EdgeCase
  ,:::::::::::,                                                    ::::::::::::,
  :::::::::::,                                                     ,::::::::::::
 :::::::::::::                                                     ,::::::::::::
-::::::::::::                      Ruby Koans                       ::::::::::::,
+::::::::::::                   Watirmark Koans                     ::::::::::::,
 ::::::::::::#{                  ruby_version                     },::::::::::::,
 :::::::::::,                                                      , ::::::::::::
 ,:::::::::::::,                brought to you by                 ,,::::::::::::,
