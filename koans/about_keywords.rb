@@ -13,7 +13,8 @@ class AboutKeywordsView < DonationFormView
   keyword(:state)   { browser.select_list(:id, "state")}
   keyword(:card_type,
           ["Visa"] => "A",
-          ["Discover"] => "B"
+          ["Discover"] => "B",
+          ["American Express"] => "D"
   ) { browser.radio(:name, "radgroup") }
   keyword(:cardnumber) { browser.text_field(:id, "credit_card") }
   keyword(:cvv) { browser.text_field(:id, "credit_card_cvv") }
@@ -47,7 +48,20 @@ class AboutKeywords < EdgeCase::Koan
                 :state => "Texas",
                 :card_type => "Visa",
                 :cardnumber => "4111111111111111",
-                :cvv => "111"}
+                :cvv => "111",
+                :exp_date => "05/09/2014"}
+
+    AboutKeywordsController.new(keywords).run :create
+  end
+
+  def test_radio_options
+    keywords = {:amount => "10.00",
+                :firstname => "FisrtName",
+                :lastname => "LastName",
+                :card_type => "American Express",
+                :cardnumber => "4111111111111111",
+                :cvv => "111",
+                :exp_date => "05/09/2014"}
 
     AboutKeywordsController.new(keywords).run :create
   end
