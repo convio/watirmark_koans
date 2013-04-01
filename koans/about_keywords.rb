@@ -81,7 +81,7 @@ class AboutKeywords < EdgeCase::Koan
   end
 
   def test_add_keywords
-    keywords = {}
-    AboutKeywordsController.new().run :create
+    keywords = {:amount => "10.00"}
+    AboutKeywordsController.new(keywords).run :create
   end
 end
