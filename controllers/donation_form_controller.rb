@@ -19,4 +19,9 @@ class DonationFormController < Watirmark::WebPage::Controller
   def submit
     @view.submit.click
   end
+
+  def populate_data
+    super
+    submit
+  end
 end
