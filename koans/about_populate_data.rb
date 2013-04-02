@@ -94,9 +94,6 @@ class PopulateDataFive < DonationFormController
   end
 end
 
-
-
-
 class AboutPopulateData < EdgeCase::Koan
 
   def test_populate_data1
