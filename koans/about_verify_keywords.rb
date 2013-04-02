@@ -21,7 +21,7 @@ class AboutVerifyKeywordView < ContactInfoView
   #transaction information
   private_keyword(:donorname) {}
   verify_keyword(:transactiondate) { |name| locate_row(name).cell(:index, 1).text }
-  verify_keyword(:transactionamount) { |name| locate_row(name).cell(:index, 2).text }
+  verify_keyword(:transactionamount) { |name| locate_row(name).cell(:index, 5).text }
   verify_keyword(:paymenttype) { |name| locate_row(name).cell(:index, 3).text }
 
   def locate_row name
@@ -67,7 +67,7 @@ class AboutVerifyKeyword < EdgeCase::Koan
   def test_verify_keyword3
     verify_keywords = {:donorname => "John Smith",
                        :transactiondate => "1-1-2013",
-                       :transactionamount => "$85.65"}
+                       :transactionamount => "$25.00"} #HINT: Check the view keywords identifier
 
     VerifyKeywords.new(verify_keywords).run :verify
   end
