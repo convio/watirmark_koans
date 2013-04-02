@@ -14,6 +14,7 @@ rescue LoadError
 end
 
 require File.dirname(__FILE__) + "/../controllers/donation_form_controller"
+require File.dirname(__FILE__) + "/../controllers/contact_info_page_controller"
 require File.dirname(__FILE__) + "/extensions"
 require File.dirname(__FILE__) + "/post_checkers"
 
