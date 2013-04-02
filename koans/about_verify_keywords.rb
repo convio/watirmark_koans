@@ -15,13 +15,13 @@ class AboutVerifyKeywordView < ContactInfoView
 
   #transaction information
   private_keyword(:donorname) {}
-  verify_keyword(:transactiondate) { |name| locate_row(name).cell(:index, 1) }
-  verify_keyword(:transactionamount) { |name| locate_row(name).cell(:index, 2) }
-  verify_keyword(:paymenttype) { |name| locate_row(name).cell(:index, 3) }
-  verify_keyword(:source) { |name| locate_row(name).cell(:index, 4) }
+  verify_keyword(:transactiondate) { |name| locate_row(name).cell(:index, 1).text }
+  verify_keyword(:transactionamount) { |name| locate_row(name).cell(:index, 2).text }
+  verify_keyword(:paymenttype) { |name| locate_row(name).cell(:index, 3).text }
+  verify_keyword(:source) { |name| locate_row(name).cell(:index, 4).text }
 
   def locate_row name
-    transaction_table.row(:text, /name/)
+    transaction_table.row(:text, /#{name}/)
   end
 end
 
@@ -34,6 +34,10 @@ class VerifyKeywords < ContactInfoController
 
   def verify_transactionamount
     assert @view.transactionamount(@model.donorname) == @model.transactionamount
+  end
+
+  def verify_paymenttype
+    assert @view.paymenttype == @model.paymenttype
   end
 end
 
@@ -53,15 +57,24 @@ class AboutVerifyKeyword < EdgeCase::Koan
                        :state => "Texas",
                        :zip => "78754"}
 
-    VerifyKeywords.new(verify_keywords).run :verify #Cannot locate element on page. Maybe something is wrong the the controllers view
+    VerifyKeywords.new(verify_keywords).run :verify #HINT: Maybe something is wrong the the controllers view
   end
 
   def test_verify_keyword3
     verify_keywords = { :donorname => "John Smith",
                         :transactiondate => "Jan 1, 2013",
-                        :transactionamount => "85.65"}
+                        :transactionamount => "$85.65"}
 
     VerifyKeywords.new(verify_keywords).run :verify
+  end
+
+  def test_verify_keyword4
+    verify_keywords = { :donorname => "Aaron Rogers",
+                        :transactiondate => "Feb 21, 2013",
+                        :transactionamount => "$85.65",
+                        :paymenttype => "PayPal"}
+
+    VerifyKeywords.new(verify_keywords).run :verify     #HINT: check the controller verify methods
   end
 
 end
