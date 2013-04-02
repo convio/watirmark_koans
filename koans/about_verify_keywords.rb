@@ -14,6 +14,7 @@ class AboutVerifyKeywordView < ContactInfoView
   verify_keyword(:zip) { contact_table.row(:text, /Postal Codee/).cell(:index, 1) }
 
   #transaction information
+  private_keyword(:donorname) {}
   verify_keyword(:transactiondate) { |name| locate_row(name).cell(:index, 1) }
   verify_keyword(:transactionamount) { |name| locate_row(name).cell(:index, 2) }
   verify_keyword(:paymenttype) { |name| locate_row(name).cell(:index, 3) }
@@ -26,6 +27,14 @@ end
 
 class VerifyKeywords < ContactInfoController
   @view = AboutVerifyKeywordView
+
+  def verify_transactiondate
+    assert @view.transactiondate(@model.donorname) == @model.transactiondate
+  end
+
+  def verify_transactionamount
+    assert @view.transactionamount(@model.donorname) == @model.transactionamount
+  end
 end
 
 
@@ -44,7 +53,15 @@ class AboutVerifyKeyword < EdgeCase::Koan
                        :state => "Texas",
                        :zip => "78754"}
 
-    VerifyKeywords.new(verify_keywords).run :verify  #Cannot locate element on page. Maybe something is wrong the the controllers view
+    VerifyKeywords.new(verify_keywords).run :verify #Cannot locate element on page. Maybe something is wrong the the controllers view
+  end
+
+  def test_verify_keyword3
+    verify_keywords = { :donorname => "John Smith",
+                        :transactiondate => "Jan 1, 2013",
+                        :transactionamount => "85.65"}
+
+    VerifyKeywords.new(verify_keywords).run :verify
   end
 
 end
