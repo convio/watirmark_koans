@@ -7,10 +7,6 @@ class DonationFormView < Watirmark::Page
   def create(model)
     home(model)
   end
-
-  def close_browser
-    Page.browser.close
-  end
 end
 
 class DonationFormController < Watirmark::WebPage::Controller
