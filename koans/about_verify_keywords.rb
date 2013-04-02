@@ -5,6 +5,11 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 
 
 class AboutVerifyKeywordView < ContactInfoView
+
+  populate_keyword(:name) { browser.text_field(:id, "donorName") }
+  populate_keyword(:amount) { browser.text_field(:id, "amount") }
+  populate_keyword(:paytype) { browser.select_list(:id, "paymentType") }
+
   #contact information
   verify_keyword(:firstname) { contact_table.row(:text, /First Name/).cell(:index, 1) }
   verify_keyword(:lastname) { contact_table.row(:text, /Last Name/).cell(:index, 1) }
@@ -18,7 +23,6 @@ class AboutVerifyKeywordView < ContactInfoView
   verify_keyword(:transactiondate) { |name| locate_row(name).cell(:index, 1).text }
   verify_keyword(:transactionamount) { |name| locate_row(name).cell(:index, 2).text }
   verify_keyword(:paymenttype) { |name| locate_row(name).cell(:index, 3).text }
-  verify_keyword(:source) { |name| locate_row(name).cell(:index, 4).text }
 
   def locate_row name
     transaction_table.row(:text, /#{name}/)
@@ -61,20 +65,33 @@ class AboutVerifyKeyword < EdgeCase::Koan
   end
 
   def test_verify_keyword3
-    verify_keywords = { :donorname => "John Smith",
-                        :transactiondate => "Jan 1, 2013",
-                        :transactionamount => "$85.65"}
+    verify_keywords = {:donorname => "John Smith",
+                       :transactiondate => "1-1-2013",
+                       :transactionamount => "$85.65"}
 
     VerifyKeywords.new(verify_keywords).run :verify
   end
 
   def test_verify_keyword4
-    verify_keywords = { :donorname => "Aaron Rogers",
-                        :transactiondate => "Feb 21, 2013",
-                        :transactionamount => "$85.65",
-                        :paymenttype => "PayPal"}
+    verify_keywords = {:donorname => "Aaron Rogers",
+                       :transactiondate => "2-21-2013",
+                       :transactionamount => "$85.65",
+                       :paymenttype => "PayPal"}
 
-    VerifyKeywords.new(verify_keywords).run :verify     #HINT: check the controller verify methods
+    VerifyKeywords.new(verify_keywords).run :verify #HINT: check the controller verify methods
+  end
+
+  def test_verify_keyword5
+    keywords = {:name => "Tony Romo",
+                :amount => "$25.00",
+                :paytype => "Credit Card"}
+
+    verify_keywords = {:donorname => "Tony Romo",
+                       :transactionamount => "$25.22"}
+
+    keywords = keywords.merge!(verify_keywords)
+
+    VerifyKeywords.new(keywords).run :create, :verify
   end
 
 end
