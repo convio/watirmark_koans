@@ -49,7 +49,7 @@ module Watirmark::Model
   trait :donor do
     traits :person, :address, :credit_card
     amount {"10.00"}
-    gift_type {"Donation"}
+    gift_type {"Offline Donation"}
   end
 end
 
@@ -66,5 +66,8 @@ class AboutTraits < EdgeCase::Koan
     assert model.city == "___"
   end
 
-
+  def test_invalid_trait_value
+    model = TraitsModel.new
+    AboutTraitsController.new(model).run :create
+  end
 end
