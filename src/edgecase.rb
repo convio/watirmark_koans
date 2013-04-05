@@ -7,16 +7,15 @@ begin
 rescue LoadError
 end
 
+# --------------------------------------------------------------------
+# Add watirmark libs
+# --------------------------------------------------------------------
+
 begin
   require 'watirmark'
 rescue LoadError
-  raise "You do not have watirmark, trying running a bundle install and make sure to run in the context of bundler"
+  raise "Please run 'bundle install' to get the koan dependencies"
 end
-
-require File.dirname(__FILE__) + "/../controllers/donation_form_controller"
-require File.dirname(__FILE__) + "/../controllers/contact_info_page_controller"
-require File.dirname(__FILE__) + "/extensions"
-require File.dirname(__FILE__) + "/post_checkers"
 
 # --------------------------------------------------------------------
 # Support code for the Ruby Koans.
@@ -94,6 +93,7 @@ class String
   end
 end
 
+# TODO: Change EdgeCase to Neo
 module EdgeCase
   class << self
     def simple_output
@@ -279,7 +279,7 @@ module EdgeCase
  ,:::::::::::,                                                    ::::::::::::,
  :::::::::::,                                                     ,::::::::::::
 :::::::::::::                                                     ,::::::::::::
-::::::::::::                   Watirmark Koans                     ::::::::::::,
+::::::::::::                      Ruby Koans                       ::::::::::::,
 ::::::::::::#{                  ruby_version                     },::::::::::::,
 :::::::::::,                                                      , ::::::::::::
 ,:::::::::::::,                brought to you by                 ,,::::::::::::,
