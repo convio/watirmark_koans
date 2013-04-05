@@ -27,6 +27,19 @@ class AboutModelsController < DonationFormController
   @view = AboutModelsView
 end
 
+class Model < Watirmark::Model::Factory
+  keywords AboutModelsView.keywords
+
+  defaults do
+    amount {"10.00"}
+    firstname {"First"}
+    lastname {"Last"}
+    cardnumber {"4111111111111111"}
+    cvv {"111"}
+    exp_date {"05/09/2014"}
+  end
+end
+
 class ModelDefaults < Watirmark::Model::Factory
   keywords AboutModelsView.keywords
 
@@ -54,6 +67,12 @@ end
 
 class AboutModels < EdgeCase::Koan
 
+  def test_model_values
+    model = Model.new
+    assert model.amount == "10.00"
+    assert model.firstname == "___"
+  end
+
   def test_model_defaults
     model = ModelDefaults.new
     AboutModelsController.new(model).run :create
@@ -63,5 +82,4 @@ class AboutModels < EdgeCase::Koan
     model = ModelKeywords.new
     AboutModelsController.new(model).run :create    #HINT: Each model must define the keywords that can be used
   end
-
 end
