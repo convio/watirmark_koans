@@ -3,7 +3,7 @@ require 'rake/testtask'
 begin
   require 'watirmark'
 rescue LoadError
-  raise "You do not have watirmark, trying running a bundle install"
+  raise "You do not have watirmark, trying running a bundle install and make sure to run in the context of bundler"
 end
 
 
