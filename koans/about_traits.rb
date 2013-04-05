@@ -40,7 +40,6 @@ module Watirmark::Model
   end
 
   trait :credit_card do
-    card_type {"Visa"}
     cardnumber {"4111111111111111"}
     cvv {"111"}
     exp_date {"05/09/2014"}
@@ -58,6 +57,15 @@ class TraitsModel < Watirmark::Model::Factory
   traits :donor
 end
 
+class CardTypeModel < Watirmark::Model::Factory
+  keywords AboutTraitsView.keywords
+  traits :donor
+
+  defaults do
+    card_type {"Mastercard"}
+  end
+end
+
 
 class AboutTraits < EdgeCase::Koan
 
@@ -68,6 +76,11 @@ class AboutTraits < EdgeCase::Koan
 
   def test_invalid_trait_value
     model = TraitsModel.new
+    AboutTraitsController.new(model).run :create
+  end
+
+  def test_taits_with_defaults
+    model = CardTypeModel.new
     AboutTraitsController.new(model).run :create
   end
 end
