@@ -31,7 +31,7 @@ class AboutKeywords < EdgeCase::Koan
 
   def test_missing_keyword
     keywords = {:amount => "10.00",
-                :firstname => "FisrtName",
+                :firstname => "FirstName",
                 :lastname => "LastName",
                 :card_type => "Visa",
                 :cardnumber => "4111111111111111",
@@ -42,7 +42,7 @@ class AboutKeywords < EdgeCase::Koan
 
   def test_invalid_identifier
     keywords = {:amount => "10.00",
-                :firstname => "FisrtName",
+                :firstname => "FirstName",
                 :lastname => "LastName",
                 :street => "123 oak hill lane",
                 :city => "Austin",
@@ -57,7 +57,7 @@ class AboutKeywords < EdgeCase::Koan
 
   def test_radio_options
     keywords = {:amount => "10.00",
-                :firstname => "FisrtName",
+                :firstname => "FirstName",
                 :lastname => "LastName",
                 :card_type => "American Express",
                 :cardnumber => "4111111111111111",
@@ -69,7 +69,7 @@ class AboutKeywords < EdgeCase::Koan
 
   def test_select_list
     keywords = {:amount => "10.00",
-                :firstname => "FisrtName",
+                :firstname => "FirstName",
                 :lastname => "LastName",
                 :gift_type => "Business",
                 :card_type => "American Express",
