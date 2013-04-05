@@ -74,6 +74,13 @@ class AboutTraits < EdgeCase::Koan
     assert model.city == "___"
   end
 
+  def test_update_trait_value
+    model = TraitsModel.new
+    assert model.street == "___"
+    model.street = "523 Candy Lane"
+    assert model.street == "___"
+  end
+
   def test_invalid_trait_value
     model = TraitsModel.new
     AboutTraitsController.new(model).run :create
@@ -82,12 +89,5 @@ class AboutTraits < EdgeCase::Koan
   def test_taits_with_defaults
     model = CardTypeModel.new
     AboutTraitsController.new(model).run :create
-  end
-
-  def test_update_trait_value
-    model = TraitsModel.new
-    assert model.street == "___"
-    model.street = "523 Candy Lane"
-    assert model.street == "___"
   end
 end
