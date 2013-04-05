@@ -73,6 +73,11 @@ class AboutModels < EdgeCase::Koan
     assert model.firstname == "___"
   end
 
+  def test_model_hash
+    model = Model.new.to_h
+    assert model == {}
+  end
+
   def test_model_defaults
     model = ModelDefaults.new
     AboutModelsController.new(model).run :create
