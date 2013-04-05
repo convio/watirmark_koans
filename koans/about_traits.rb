@@ -83,4 +83,11 @@ class AboutTraits < EdgeCase::Koan
     model = CardTypeModel.new
     AboutTraitsController.new(model).run :create
   end
+
+  def test_update_trait_value
+    model = TraitsModel.new
+    assert model.street == "___"
+    model.street = "523 Candy Lane"
+    assert model.street == "___"
+  end
 end
