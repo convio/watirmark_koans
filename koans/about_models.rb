@@ -38,6 +38,10 @@ class Model < Watirmark::Model::Factory
     cvv {"111"}
     exp_date {"05/09/2014"}
   end
+
+  def full_name
+    "#{firstname} #{lastname}"
+  end
 end
 
 class ModelDefaults < Watirmark::Model::Factory
@@ -76,6 +80,11 @@ class AboutModels < EdgeCase::Koan
   def test_model_hash
     model = Model.new.to_h
     assert model == {}
+  end
+
+  def test_model_methods
+    model = Model.new
+    assert model.full_name == "___"
   end
 
   def test_model_defaults
