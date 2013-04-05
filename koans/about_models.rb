@@ -62,10 +62,16 @@ end
 
 class AboutModels < EdgeCase::Koan
 
-  def test_model_values
+  def test_model_value
     model = Model.new
     assert model.amount == "10.00"
     assert model.firstname == "___"
+  end
+
+  def test_model_update_value
+    model = Modelnew
+    model.amount = "55.00"
+    assert mode.amount == "___"
   end
 
   def test_model_hash
