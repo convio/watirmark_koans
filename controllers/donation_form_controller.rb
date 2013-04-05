@@ -1,7 +1,7 @@
 class DonationFormView < Watirmark::Page
 
   def home(model)
-    Page.browser.goto( "file:///" + File.dirname(__FILE__) + "/html/donation_form.html")
+    Page.browser.goto( "file:///" + File.dirname(__FILE__) + "/../html/donation_form.html")
   end
 
   def create(model)

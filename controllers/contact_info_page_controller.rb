@@ -3,7 +3,7 @@ class ContactInfoView < Watirmark::Page
   keyword(:submit)  { browser.button(:value, "Add Gift") }
 
   def home(model)
-    Page.browser.goto( "file:///" + File.dirname(__FILE__) + "/html/contact_info_page.html")
+    Page.browser.goto( "file:///" + File.dirname(__FILE__) + "/../html/contact_info_page.html")
   end
 
   def create(model)
