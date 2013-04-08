@@ -17,6 +17,8 @@ rescue LoadError
   raise "Please run 'bundle install' to get the koan dependencies"
 end
 
+require_relative 'page_helpers'
+
 # --------------------------------------------------------------------
 # Support code for the Ruby Koans.
 # --------------------------------------------------------------------
@@ -26,8 +28,8 @@ end
 
 def ruby_version?(version)
   RUBY_VERSION =~ /^#{version}/ ||
-    (version == 'jruby' && defined?(JRUBY_VERSION)) ||
-    (version == 'mri' && ! defined?(JRUBY_VERSION))
+      (version == 'jruby' && defined?(JRUBY_VERSION)) ||
+      (version == 'mri' && !defined?(JRUBY_VERSION))
 end
 
 def in_ruby_version(*versions)
@@ -104,9 +106,9 @@ module EdgeCase
   module Color
     #shamelessly stolen (and modified) from redgreen
     COLORS = {
-      :clear   => 0,  :black   => 30, :red   => 31,
-      :green   => 32, :yellow  => 33, :blue  => 34,
-      :magenta => 35, :cyan    => 36,
+        :clear => 0, :black => 30, :red => 31,
+        :green => 32, :yellow => 33, :blue => 34,
+        :magenta => 35, :cyan => 36,
     }
 
     module_function
@@ -157,7 +159,7 @@ module EdgeCase
       AssertionError = Test::Unit::AssertionFailedError
     end
 
-    in_ruby_version("1.9") do
+    in_ruby_version("1.9", "2.0") do
       if defined?(MiniTest)
         AssertionError = MiniTest::Assertion
       else
@@ -177,7 +179,7 @@ module EdgeCase
     def add_progress(prog)
       @_contents = nil
       exists = File.exists?(PROGRESS_FILE_NAME)
-      File.open(PROGRESS_FILE_NAME,'a+') do |f|
+      File.open(PROGRESS_FILE_NAME, 'a+') do |f|
         f.print "#{',' if exists}#{prog}"
       end
     end
@@ -185,8 +187,8 @@ module EdgeCase
     def progress
       if @_contents.nil?
         if File.exists?(PROGRESS_FILE_NAME)
-          File.open(PROGRESS_FILE_NAME,'r') do |f|
-            @_contents = f.read.to_s.gsub(/\s/,'').split(',')
+          File.open(PROGRESS_FILE_NAME, 'r') do |f|
+            @_contents = f.read.to_s.gsub(/\s/, '').split(',')
           end
         else
           @_contents = []
@@ -211,7 +213,7 @@ module EdgeCase
     end
 
     def failed?
-      ! @failure.nil?
+      !@failure.nil?
     end
 
     def assert_failed?
@@ -220,7 +222,7 @@ module EdgeCase
 
     def instruct
       if failed?
-        @observations.each{|c| puts c }
+        @observations.each { |c| puts c }
         encourage
         guide_through_error
         a_zenlike_statement
@@ -263,7 +265,7 @@ module EdgeCase
       "JRuby 1.9.x Koans"
       ruby_version = "(in #{'J' if defined?(JRUBY_VERSION)}Ruby #{defined?(JRUBY_VERSION) ? JRUBY_VERSION : RUBY_VERSION})"
       ruby_version = ruby_version.side_padding(54)
-        completed = <<-ENDTEXT
+      completed = <<-ENDTEXT
                                   ,,   ,  ,,
                                 :      ::::,    :::,
                    ,        ,,: :::::::::::::,,  ::::   :  ,
@@ -279,10 +281,10 @@ module EdgeCase
  ,:::::::::::,                                                    ::::::::::::,
  :::::::::::,                                                     ,::::::::::::
 :::::::::::::                                                     ,::::::::::::
-::::::::::::                      Ruby Koans                       ::::::::::::,
+::::::::::::                      Watirmark Koans                  ::::::::::::,
 ::::::::::::#{                  ruby_version                     },::::::::::::,
 :::::::::::,                                                      , ::::::::::::
-,:::::::::::::,                brought to you by                 ,,::::::::::::,
+,:::::::::::::,                based on software by              ,,::::::::::::,
 ::::::::::::::                                                    ,::::::::::::
  ::::::::::::::,                                                 ,:::::::::::::
  ::::::::::::,             EdgeCase Software Artisans           , ::::::::::::
@@ -297,8 +299,8 @@ module EdgeCase
                  ,::::::::::::::::              ::,, ,   ,:::,
                       ,::::                         , ,,
                                                   ,,,
-ENDTEXT
-        puts completed
+      ENDTEXT
+      puts completed
     end
 
     def encourage
@@ -342,7 +344,7 @@ ENDTEXT
 
     def indent(text)
       text = text.split(/\n/) if text.is_a?(String)
-      text.collect{|t| "  #{t}"}
+      text.collect { |t| "  #{t}" }
     end
 
     def find_interesting_lines(backtrace)
@@ -355,22 +357,22 @@ ENDTEXT
     # metakoans Ruby Quiz (http://rubyquiz.com/quiz67.html)
     def a_zenlike_statement
       if !failed?
-        zen_statement =  "Mountains are again merely mountains"
+        zen_statement = "Mountains are again merely mountains"
       else
         zen_statement = case (@pass_count % 10)
-        when 0
-          "mountains are merely mountains"
-        when 1, 2
-          "learn the rules so you know how to break them properly"
-        when 3, 4
-          "remember that silence is sometimes the best answer"
-        when 5, 6
-          "sleep is the best meditation"
-        when 7, 8
-          "when you lose, don't lose the lesson"
-        else
-          "things are not what they appear to be: nor are they otherwise"
-        end
+                          when 0
+                            "mountains are merely mountains"
+                          when 1, 2
+                            "learn the rules so you know how to break them properly"
+                          when 3, 4
+                            "remember that silence is sometimes the best answer"
+                          when 5, 6
+                            "sleep is the best meditation"
+                          when 7, 8
+                            "when you lose, don't lose the lesson"
+                          else
+                            "things are not what they appear to be: nor are they otherwise"
+                        end
       end
       puts Color.green(zen_statement)
     end
@@ -378,6 +380,7 @@ ENDTEXT
 
   class Koan
     include Test::Unit::Assertions
+    extend PageHelpers
 
     attr_reader :name, :failure, :koan_count, :step_count, :koan_file
 
@@ -436,16 +439,16 @@ ENDTEXT
       def command_line(args)
         args.each do |arg|
           case arg
-          when /^-n\/(.*)\/$/
-            @test_pattern = Regexp.new($1)
-          when /^-n(.*)$/
-            @test_pattern = Regexp.new(Regexp.quote($1))
-          else
-            if File.exist?(arg)
-              load(arg)
+            when /^-n\/(.*)\/$/
+              @test_pattern = Regexp.new($1)
+            when /^-n(.*)$/
+              @test_pattern = Regexp.new(Regexp.quote($1))
             else
-              fail "Unknown command line argument '#{arg}'"
-            end
+              if File.exist?(arg)
+                load(arg)
+              else
+                fail "Unknown command line argument '#{arg}'"
+              end
           end
         end
       end
@@ -455,7 +458,7 @@ ENDTEXT
         @subclasses ||= []
       end
 
-       # Lazy initialize list of test methods.
+      # Lazy initialize list of test methods.
       def testmethods
         @test_methods ||= []
       end
@@ -469,7 +472,7 @@ ENDTEXT
       end
 
       def total_tests
-        self.subclasses.inject(0){|total, k| total + k.testmethods.size }
+        self.subclasses.inject(0) { |total, k| total + k.testmethods.size }
       end
     end
   end
@@ -486,7 +489,7 @@ ENDTEXT
     def each_step
       catch(:edgecase_exit) {
         step_count = 0
-        EdgeCase::Koan.subclasses.each_with_index do |koan,koan_index|
+        EdgeCase::Koan.subclasses.each_with_index do |koan, koan_index|
           koan.testmethods.each do |method_name|
             step = koan.new(method_name, koan.to_s, koan_index+1, step_count+=1)
             yield step
