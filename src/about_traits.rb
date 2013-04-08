@@ -1,33 +1,9 @@
-#!/usr/bin/env ruby
-# -*- ruby -*-
+require_relative 'edgecase'
+require_relative 'watirmark_helper'
 
-require File.expand_path(File.dirname(__FILE__) + '/edgecase')
-
-
-class AboutTraitsView < DonationFormView
-  keyword(:amount) { browser.text_field(:id, "amount") }
-  keyword(:firstname) { browser.text_field(:id, "first_name") }
-  keyword(:lastname) { browser.text_field(:id, "last_name") }
-  keyword(:gift_type) { browser.select_list(:id, "giftType") }
-  keyword(:street) { browser.text_field(:id, "street_name") }
-  keyword(:city) { browser.text_field(:id, "city") }
-  keyword(:state) { browser.select_list(:id, "state") }
-  keyword(:card_type,
-          ["Visa"] => "A",
-          ["Discover"] => "B",
-          ["American Express"] => "C"
-  ) { browser.radio(:name, "radgroup") }
-  keyword(:cardnumber) { browser.text_field(:id, "credit_card") }
-  keyword(:cvv) { browser.text_field(:id, "credit_card_cvv") }
-  keyword(:exp_date) { browser.text_field(:id, "exp_date") }
-  keyword(:submit) { browser.button(:value, "Submit") }
-end
-
-class AboutTraitsController < DonationFormController
-  @view = AboutTraitsView
-end
 
 module Watirmark::Model
+
   trait :person do
     firstname {"First"}
     lastname  {"Last"}
@@ -50,44 +26,38 @@ module Watirmark::Model
     amount {"10.00"}
     gift_type {"Offline Donation"}
   end
+
 end
-
-class TraitsModel < Watirmark::Model::Factory
-  keywords AboutTraitsView.keywords
-  traits :donor
-end
-
-class CardTypeModel < Watirmark::Model::Factory
-  keywords AboutTraitsView.keywords
-  traits :donor
-
-  defaults do
-    card_type {"Mastercard"}
-  end
-end
-
 
 class AboutTraits < EdgeCase::Koan
+  include TraitHelper
 
-  def test_model_trait_value
-    model = TraitsModel.new
-    assert model.city == "___"
+  class TraitsModel < Watirmark::Model::Factory
+    keywords [:amount, :firstname, :lastname, :cardnumber, :cvv]
+    traits :donor
   end
 
-  def test_update_trait_value
-    model = TraitsModel.new
-    assert model.street == "___"
-    model.street = "523 Candy Lane"
-    assert model.street == "___"
+  def test_trait_keys
+    assert_equal __([:firstname, :lastname]), trait_keys(:person)
   end
 
-  def test_invalid_trait_value
-    model = TraitsModel.new
-    AboutTraitsController.new(model).run :create
+  def test_trait_values
+    assert_equal __(["First", "Last"]), trait_values(:person)
   end
 
-  def test_taits_with_defaults
-    model = CardTypeModel.new
-    AboutTraitsController.new(model).run :create
+  def test_traits_in_trait
+    assert_equal __([:person, :address, :credit_card]), trait(:donor).traits
+  end
+
+  def test_model_traits
+    assert_equal __([:donor]), TraitsModel.new.traits
+  end
+
+  def test_model_has_trait_values
+    assert_equal __(true), TraitsModel.new.respond_to?(:amount)
+  end
+
+  def test_model_trait_values
+    assert_equal __("10.00"), TraitsModel.new.amount
   end
 end
