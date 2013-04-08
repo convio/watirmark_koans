@@ -1,96 +1,48 @@
-#!/usr/bin/env ruby
-# -*- ruby -*-
-
-require File.expand_path(File.dirname(__FILE__) + '/edgecase')
-
-
-class AboutModelsView < DonationFormView
-  keyword(:amount) { browser.text_field(:id, "amount") }
-  keyword(:firstname) { browser.text_field(:id, "first_name") }
-  keyword(:lastname) { browser.text_field(:id, "last_name") }
-  keyword(:cardnumber) { browser.text_field(:id, "credit_card") }
-  keyword(:cvv) { browser.text_field(:id, "credit_card_cvv") }
-  keyword(:exp_date) { browser.text_field(:id, "exp_date") }
-  keyword(:submit) { browser.button(:value, "Submit") }
-end
-
-class AboutModelsController < DonationFormController
-  @view = AboutModelsView
-end
-
-class Model < Watirmark::Model::Factory
-  keywords AboutModelsView.keywords
-
-  defaults do
-    amount {"10.00"}
-    firstname {"First"}
-    lastname {"Last"}
-    cardnumber {"4111111111111111"}
-    cvv {"111"}
-    exp_date {"05/09/2014"}
-  end
-
-  def full_name
-    "#{firstname} #{lastname}"
-  end
-end
-
-class ModelDefaults < Watirmark::Model::Factory
-  keywords AboutModelsView.keywords
-
-  defaults do
-    firstname {"First"}
-    lastname {"Last"}
-    cardnumber {"4111111111111111"}
-    cvv {"111"}
-    exp_date {"05/09/2014"}
-  end
-end
-
-class ModelKeywords < Watirmark::Model::Factory
-  keywords [:amount, :firstname, :lastname, :cardnumber, :cvv]
-
-  defaults do
-    amount {"10.00"}
-    firstname {"First"}
-    lastname {"Last"}
-    cardnumber {"4111111111111111"}
-    cvv {"111"}
-    exp_date {"05/09/2014"}
-  end
-end
+require_relative 'edgecase'
 
 class AboutModels < EdgeCase::Koan
 
-  def test_model_value
-    model = Model.new
-    assert model.amount == "10.00"
-    assert model.firstname == "___"
-  end
+  class Model < Watirmark::Model::Factory
+    keywords [:amount, :firstname, :lastname, :cardnumber, :cvv]
 
-  def test_model_update_value
-    model = Modelnew
-    model.amount = "55.00"
-    assert mode.amount == "___"
-  end
+    defaults do
+      amount {"10.00"}
+      firstname {"First"}
+      lastname {"Last"}
+      cardnumber {"4111111111111111"}
+      cvv {"111"}
+      exp_date {"05/09/2014"}
+    end
 
-  def test_model_hash
-    model = Model.new.to_h
-    assert model == {}
-  end
-
-  def test_model_methods
-    model = Model.new
-    assert model.full_name == "___"
+    def full_name
+      "#{firstname} #{lastname}"
+    end
   end
 
   def test_model_defaults
-    model = ModelDefaults.new
-    AboutModelsController.new(model).run :create
+    assert_equal __(true), Model.new.respond_to?(:amount)
+  end
+
+  def test_model_value
+    assert_equal __("10.00"), Model.new.amount
+  end
+
+  def test_model_update_value
+    model = Model.new
+    model.amount = "55.00"
+    assert_equal __("55.00"), model.amount
+  end
+
+  def test_model_update
+    model = Model.new.update(:middlename => "Middle")
+    assert_equal __(true), model.respond_to?(:middlename)
+  end
+
+  def test_model_methods
+    assert_equal __("First Last"), Model.new.full_name
   end
 
   def test_model_keywords
-    model = ModelKeywords.new
-    AboutModelsController.new(model).run :create    #HINT: Each model must define the keywords that can be used
+    assert_equal __([:amount, :firstname, :lastname, :cardnumber, :cvv]), Model.new.keywords
   end
 end
