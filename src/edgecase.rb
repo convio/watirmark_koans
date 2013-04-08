@@ -380,7 +380,7 @@ module EdgeCase
 
   class Koan
     include Test::Unit::Assertions
-    extend PageHelpers
+    include PageHelpers
 
     attr_reader :name, :failure, :koan_count, :step_count, :koan_file
 

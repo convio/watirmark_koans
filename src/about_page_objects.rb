@@ -1,34 +1,28 @@
 require_relative 'edgecase'
 
 class AboutPageObjects < EdgeCase::Koan
-
-  class PretendWebPage
-    attr_accessor :text_field, :select_list, :radio, :checkbox
-  end
-  Page.browser = PretendWebPage.new
-
-  def test_a_page_object_is_an_interface_to_a_web_page
-    assert_equal 1, 1
+  def setup
+    show_page "page_object.html"
   end
 
-  def test_simple_view_should_show_keywords
-    assert_equal __(:name), MyPage.keywords.first
+  class DonationPage < Watirmark::Page
+    keyword(:first_name) { browser.text_field(:id => 'first_name') }
+    keyword(:last_name) { browser.text_field(:id => 'last_name') }
+    keyword(:gift_type) { browser.select_list(:id => 'gift_type') }
+    keyword(:remember_me) { browser.checkbox(:id => 'remember_me') }
+    keyword(:submit) { browser.button(:id => 'gift_type') }
   end
 
-  def test_simple_view_should_create_getter_and_setter_methods
-    assert_equal __(true), MyPage.respond_to?(:name)
-    assert_equal __(true), MyPage.respond_to?(:name=)
-
+  def test_use_page_objects_to_read_values
+    page = DonationPage.new
+    page.first_name.value = "Suzie"
+    assert_equal __('Suzie'), page.first_name.value
   end
 
-  def test_simple_view_should_show_keywords
-    assert_equal __("Hello World"), SimpleView.name
-  end
-
-  class MyEmptyPage < Watirmark::Page
-  end
-
-  def test_empty_view
-    assert_equal __(Array), NoKeywords.keywords
+  def test_use_page_objects_to_write_values
+    page = DonationPage.new
+    assert_equal __('Once'), page.gift_type.value
+    page.gift_type = 'Recurring'
+    assert_equal __('Recurring'), page.gift_type.value
   end
 end

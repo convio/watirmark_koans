@@ -8,14 +8,14 @@ rescue LoadError => ex
   # No rdoc task availble.
 end
 
-SRC_DIR      = 'src'
-PROB_DIR     = 'koans'
-DIST_DIR     = 'dist'
+SRC_DIR = 'src'
+PROB_DIR = 'koans'
+DIST_DIR = 'dist'
 
 SRC_FILES = FileList["#{SRC_DIR}/*"]
 KOAN_FILES = SRC_FILES.pathmap("#{PROB_DIR}/%f")
 
-today    = Time.now.strftime("%Y-%m-%d")
+today = Time.now.strftime("%Y-%m-%d")
 TAR_FILE = "#{DIST_DIR}/rubykoans-#{today}.tgz"
 ZIP_FILE = "#{DIST_DIR}/rubykoans-#{today}.zip"
 
@@ -65,7 +65,7 @@ end
 module RubyImpls
   # Calculate the list of relevant Ruby implementations.
   def self.find_ruby_impls
-    rubys = `rvm list`.gsub(/=>/,'').split(/\n/).map { |x| x.strip }.reject { |x| x.empty? || x =~ /^rvm/ }.sort
+    rubys = `rvm list`.gsub(/=>/, '').split(/\n/).map { |x| x.strip }.reject { |x| x.empty? || x =~ /^rvm/ }.sort
     expected.map { |impl|
       last = rubys.grep(Regexp.new(Regexp.quote(impl))).last
       last ? last.split.first : nil
@@ -170,6 +170,3 @@ task :run_all do
     puts "No Results for #{requested_impl}" unless results.detect { |x| x.first =~ impl_pattern }
   end
 end
-
-
-task :test_the_path => [:gen, :walk_the_path]
