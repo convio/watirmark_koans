@@ -1,6 +1,4 @@
 require_relative 'edgecase'
-require_relative 'watirmark_helper'
-
 
 module Watirmark::Model
 
@@ -30,34 +28,25 @@ module Watirmark::Model
 end
 
 class AboutTraits < EdgeCase::Koan
-  include TraitHelper
 
-  class TraitsModel < Watirmark::Model::Factory
+  class RegistrationModel < Watirmark::Model::Factory
     keywords [:amount, :firstname, :lastname, :cardnumber, :cvv]
     traits :donor
   end
 
-  def test_trait_keys
-    assert_equal __([:firstname, :lastname]), trait_keys(:person)
-  end
-
-  def test_trait_values
-    assert_equal __(["First", "Last"]), trait_values(:person)
-  end
-
   def test_traits_in_trait
-    assert_equal __([:person, :address, :credit_card]), trait(:donor).traits
+    assert_equal __([:person, :address, :credit_card]), Watirmark::Model::Traits.instance[:donor].traits
   end
 
   def test_model_traits
-    assert_equal __([:donor]), TraitsModel.new.traits
+    assert_equal __([:donor]), RegistrationModel.new.traits
   end
 
   def test_model_has_trait_values
-    assert_equal __(true), TraitsModel.new.respond_to?(:amount)
+    assert_equal __(true), RegistrationModel.new.respond_to?(:amount)
   end
 
   def test_model_trait_values
-    assert_equal __("10.00"), TraitsModel.new.amount
+    assert_equal __("10.00"), RegistrationModel.new.amount
   end
 end
