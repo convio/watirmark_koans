@@ -1,12 +1,12 @@
 module PageHelpers
   def show_page name
-    goto uri_path(name)
+    goto file_path(name)
   end
 
   def browser
     @@browser ||= begin
       Watirmark::Session.instance.openbrowser
-      Watirmark::Page.browser.goto uri_path('koans.html')
+      Watirmark::Page.browser.goto file_path('koans.html')
       Watirmark::Page.browser
     end
   end
@@ -17,7 +17,7 @@ module PageHelpers
     browser.execute_script "document.getElementById('page').src = \"#{path}\""
   end
 
-  def uri_path(name)
+  def file_path(name)
     "file://" + File.dirname(__FILE__) + "/../html/#{name}"
   end
 
