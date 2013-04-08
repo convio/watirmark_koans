@@ -170,3 +170,6 @@ task :run_all do
     puts "No Results for #{requested_impl}" unless results.detect { |x| x.first =~ impl_pattern }
   end
 end
+
+
+task :test_the_path => [:gen, :walk_the_path]
