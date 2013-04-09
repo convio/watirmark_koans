@@ -29,6 +29,10 @@ end
 
 class AboutTraits < EdgeCase::Koan
 
+  def setup
+    show_page "model_traits.html"
+  end
+
   class RegistrationModel < Watirmark::Model::Factory
     keywords [:amount, :firstname, :lastname, :cardnumber, :cvv]
     traits :donor
