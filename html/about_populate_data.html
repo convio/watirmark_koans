@@ -1,52 +1,52 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<html>
+<head>
+    <link href="example.css" rel="stylesheet" type="text/css">
+</head>
 <body>
-<h1>Populate Data</h1>
 
-<p>populate_data is a method defined in Watirmark::WebPage::Controller. By default this method looks through the keywords
-passed into the controller and trys to populate the corresponding browser elements with their values. This populate_data
-method can be override inorder to allow you more flexibilty with population, or page navigation.</p>
+<div id="form" class="form">
+    <h1>Donation Form</h1>
+    Amount: <input type="text" id="amount"><br>
+    First name: <input type="text" id="first_name"><br>
+    Last name: <input type="text" id="last_name"><br>
+    <input type="submit" value="Submit">
+</div>
+<div id="doc" class="doc">
+    <html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <body>
+    <h1>Populate Data</h1>
 
-<p>Here is some examples of populate_data in controllers</p>
+    <p>populate_data is a method defined in Watirmark::WebPage::Controller. By default this method looks through the keywords
+        passed into the controller and trys to populate the corresponding browser elements with their values. This populate_data
+        method can be override inorder to allow you more flexibilty with population, or page navigation.</p>
 
-<xmp>
-    class SimipleController < Watirmark::WebPage:Controller
-        @view = SomeView
+    <p>Here is some examples of populate_data in controllers</p>
 
-        #using default populate_data method
+<pre class="ruby">
+class SimipleController < Watirmark::WebPage:Controller
+    @view = SomeView
+
+    #using default populate_data method
+end
+
+class DonationUserAmazon < UserController
+    @view = DonationAmazonView
+
+    def populate_data
+        @view.nextbutton.click_if_exists
+        @view.amazon_email    = @model.amazon_email
+        @view.amazon_password = @model.amazon_password
+        @view.amazon_login.click
+        @view.ship_to_address.click_if_exists
+        @view.amazon_continue.click
+        @model.cancel_payment ? @view.amazon_cancel.click : @view.amazon_confirm.click
     end
+end
+</pre>
 
-    class DonationUserAmazon < UserController
-        @view = DonationAmazonView
-
-        def populate_data
-            @view.nextbutton.click_if_exists #Hit next to go to the Amazon site
-            @view.amazon_email    = @model.amazon_email
-            @view.amazon_password = @model.amazon_password
-            @view.amazon_login.click
-            @view.ship_to_address.click_if_exists #choose a shipping address
-            @view.amazon_continue.click if @view.amazon_continue.exists? #extra page when two forms of payment
-            @model.cancel_payment ? @view.amazon_cancel.click : @view.amazon_confirm.click
-        end
-    end
-
-    class Constituent < AdminController
-        @view = ConstituentView
-
-        def populate_data
-            @model.email = @model.email.downcase if @model.email
-            super
-            model_without_search = @model.clone
-            model_without_search.search = false
-            ConstituentEditPassword.new(model_without_search).create if @model.password && !@password_changed
-            ConstituentGroups.new(model_without_search).create if @model.groups || @model.groups_remove || @model.groupmembership
-            ConstituentInterests.new(model_without_search).create if @model.interests || @model.webinterests || @model.emailinterests
-            ConstituentEmailPreferences.new(model_without_search).create if @model.sitepreferredformat || @model.siteemailoptin
-        end
-    end
-
-</xmp>
-
-
+    </body>
+    </html>
+</div>
 </body>
 </html>
