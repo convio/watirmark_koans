@@ -259,10 +259,10 @@ module EdgeCase
         guide_through_error
         a_zenlike_statement
         show_progress
-        update_html
       else
         end_screen
       end
+      update_html
     end
 
     def show_progress
