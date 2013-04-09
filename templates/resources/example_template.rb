@@ -30,7 +30,7 @@ class ExampleTemplate
     div += (content.call)
     div += footer
     div.gsub!(/^/,'  ')
-    div = %Q{<div id="#{name}" class="#{name}">\n} + div + "</div>\n"
+    div = %Q{\n<div id="#{name}" class="#{name}">\n} + div + "</div>\n\n"
     @html += div
   end
 
