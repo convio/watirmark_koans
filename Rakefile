@@ -10,10 +10,15 @@ end
 
 SRC_DIR = 'src'
 PROB_DIR = 'koans'
+HTML_DIR = 'html'
+TEMPLATE_DIR = 'templates'
 DIST_DIR = 'dist'
 
 SRC_FILES = FileList["#{SRC_DIR}/*"]
 KOAN_FILES = SRC_FILES.pathmap("#{PROB_DIR}/%f")
+TEMPLATE_FILES = FileList["#{TEMPLATE_DIR}/*"]
+HTML_FILES = TEMPLATE_FILES.pathmap("#{HTML_DIR}/%f")
+
 
 today = Time.now.strftime("%Y-%m-%d")
 TAR_FILE = "#{DIST_DIR}/rubykoans-#{today}.tgz"
@@ -62,6 +67,16 @@ module Koans
   end
 end
 
+
+module Templates
+  extend Rake::DSL if defined?(Rake::DSL)
+  def Templates.make_template(infile, outfile)
+    open(outfile.sub('.rb', '.html'), "w") do |outs|
+      outs.puts `ruby #{infile}`
+    end
+  end
+end
+
 module RubyImpls
   # Calculate the list of relevant Ruby implementations.
   def self.find_ruby_impls
@@ -99,29 +114,16 @@ end
 
 directory DIST_DIR
 directory PROB_DIR
-
-file ZIP_FILE => KOAN_FILES + [DIST_DIR] do
-  sh "zip #{ZIP_FILE} #{PROB_DIR}/*"
-end
-
-file TAR_FILE => KOAN_FILES + [DIST_DIR] do
-  sh "tar zcvf #{TAR_FILE} #{PROB_DIR}"
-end
-
-desc "Create packaged files for distribution"
-task :package => [TAR_FILE, ZIP_FILE]
-
-desc "Upload the package files to the web server"
-task :upload => [TAR_FILE, ZIP_FILE] do
-  sh "scp #{TAR_FILE} linode:sites/onestepback.org/download"
-  sh "scp #{ZIP_FILE} linode:sites/onestepback.org/download"
-end
+directory HTML_DIR
 
 desc "Generate the Koans from the source files from scratch."
 task :regen => [:clobber_koans, :gen]
 
 desc "Generate the Koans from the changed source files."
-task :gen => KOAN_FILES + [PROB_DIR + "/README.rdoc"]
+task :gen => [:gen_koans, :gen_html]
+task :gen_koans => KOAN_FILES + [PROB_DIR + "/README.rdoc"]
+task :gen_html => HTML_FILES + [HTML_DIR]
+
 task :clobber_koans do
   rm_r PROB_DIR
 end
@@ -133,6 +135,12 @@ end
 SRC_FILES.each do |koan_src|
   file koan_src.pathmap("#{PROB_DIR}/%f") => [PROB_DIR, koan_src] do |t|
     Koans.make_koan_file koan_src, t.name
+  end
+end
+
+TEMPLATE_FILES.each do |html_template|
+  file html_template.pathmap("#{HTML_DIR}/%f") => [HTML_DIR, html_template] do |t|
+    Templates.make_template(html_template, t.name) unless t.name =~ /resources/
   end
 end
 
