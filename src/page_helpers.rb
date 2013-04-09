@@ -1,10 +1,6 @@
 module PageHelpers
-  def show_page app_name, doc_name=nil
-    if doc_name
-      goto file_path(app_name), file_path(doc_name)
-    else
-      goto file_path(app_name)
-    end
+  def show_page name
+    goto file_path(name)
   end
 
   def browser
@@ -20,10 +16,9 @@ module PageHelpers
 
   private
 
-  def goto(app_path, doc_path="#")
+  def goto(path)
     browser
-    $koan_browser.execute_script "parent.document.getElementById('example').src = \"#{app_path}\""
-    $koan_browser.execute_script "parent.document.getElementById('doc').src = \"#{doc_path}\""
+    $koan_browser.execute_script "parent.document.getElementById('example').src = \"#{path}\""
   end
 
   def file_path(name)
