@@ -25,4 +25,8 @@ module PageHelpers
     "file://" + File.dirname(__FILE__) + "/../html/#{name}"
   end
 
+  def document &block
+    browser.execute_script "return window.frames[0].document.getElementById('test_case_documentation').innerHTML='#{block.call}'"
+  end
+
 end

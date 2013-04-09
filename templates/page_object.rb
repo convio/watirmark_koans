@@ -31,8 +31,8 @@ template = ExampleTemplate.new.example do
 
   doc do
     %Q{
-<p>Page Objects
-This is really cool
+<h1>Page Objects</h1>
+<div id="test_case_documentation"/>
 }
   end
 end

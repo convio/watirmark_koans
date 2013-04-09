@@ -14,6 +14,9 @@ class AboutPageObjects < EdgeCase::Koan
   end
 
   def test_use_page_objects_to_read_values
+    document do
+      "This is a test "
+    end
     page = DonationPage.new
     page.first_name.value = "Suzie"
     assert_equal __('Suzie'), page.first_name.value
