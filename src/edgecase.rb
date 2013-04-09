@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 # -*- ruby -*-
-
+ENV['NO_COLOR'] = 'true'
 require 'test/unit/assertions'
 begin
   require 'win32console'
@@ -172,9 +172,41 @@ module EdgeCase
       @failure = nil
       @failed_test = nil
       @observations = []
+      @current_step_html = []
     end
 
     PROGRESS_FILE_NAME = '.path_progress'
+    STEP_HTML_FILE_NAME = File.dirname(__FILE__) + "/../html/current_step.html"
+
+    alias :old_puts :puts
+
+    def puts(text=nil)
+      old_puts text
+      add_html "#{text}\n"
+    end
+
+    alias :old_print :print
+
+    def print(text=nil)
+      old_print text
+      add_html text
+    end
+
+    def add_html text
+      @current_step_html << text
+    end
+
+    def update_html
+      File.open(STEP_HTML_FILE_NAME, 'w') do |f|
+        f.print "<!DOCTYPE HTML>"
+        f.print "<html>"
+        f.print "<pre>"
+        f.print @current_step_html.join
+        f.print "<pre>"
+        f.print "<html>"
+      end
+      Page.browser.execute_script "document.getElementById('koan').contentDocument.location.reload(true)"
+    end
 
     def add_progress(prog)
       @_contents = nil
@@ -227,6 +259,7 @@ module EdgeCase
         guide_through_error
         a_zenlike_statement
         show_progress
+        update_html
       else
         end_screen
       end

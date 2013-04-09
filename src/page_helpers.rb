@@ -9,12 +9,15 @@ module PageHelpers
       Watirmark::Page.browser.goto file_path('koans.html')
       Watirmark::Page.browser
     end
+    Watirmark::Page.browser = @@browser.frame(:id, 'page')
   end
+
 
   private
 
   def goto(path)
-    browser.execute_script "document.getElementById('page').src = \"#{path}\""
+    browser
+    @@browser.execute_script "document.getElementById('page').src = \"#{path}\""
   end
 
   def file_path(name)
