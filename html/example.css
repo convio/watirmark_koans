@@ -1,0 +1,21 @@
+.form {
+    width: 425px;
+    min-width: 425px;
+    height: 600px;
+    float:  left;
+    background-color: #EAF4D9;
+    font-size:  12px;
+}
+.doc {
+    text-wrap: normal;
+    width: 425px;
+    min-width: 400px;
+    height: 600px;
+    float:  left;
+    vertical-align: top;
+    background-color: #EFEFEF;
+    border-left: 0px;
+    font-size:  12px;
+    overflow:  auto;
+
+}

@@ -1,0 +1,14 @@
+.example {
+    height: 620px;
+    width: 900px;
+    min-width: 900px;
+    vertical-align: top;
+    border: none;
+}
+.koan {
+    width: 900px;
+    min-width: 900px;
+    height:  9999px;
+    float: none;
+    border: none;
+}
