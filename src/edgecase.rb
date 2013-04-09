@@ -205,7 +205,7 @@ module EdgeCase
         f.print "<pre>"
         f.print "<html>"
       end
-      Page.browser.execute_script "document.getElementById('koan').contentDocument.location.reload(true)"
+      $koan_browser.execute_script "parent.document.getElementById('koan').contentDocument.location.reload(true)"
     end
 
     def add_progress(prog)
