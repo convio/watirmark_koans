@@ -124,21 +124,22 @@
     You can accomplish this by packaging defaults into 'traits' which can be reused across
     model definitions. The traits themselves can also take traits.</p>
 
-<xmp>
-    module Watirmark::Model
+<pre class="ruby">
+  module Watirmark::Model
     trait :some_trait_name do
-    keyword_name {value}
-    traits :nested_trait #This is only if you want to have nested traits
+      keyword_name {value}
+      #This is only if you want to have nested traits
+      traits :nested_trait
     end
-    end
-</xmp>
+  end
+</pre>
 
 <p>These traits are global to the Watirmark::Model namespace so be careful that you're using
     names that are generic but won't collide. This can then be included in a model definition.</p>
 
 <p>Here's a more practical example of how traits could be used</p>
 
-<xmp>
+<pre class="ruby">
     module Watirmark::Model
     trait :billing_address do
     billing_street {"555 Main St"}
@@ -173,7 +174,7 @@
     end
     end
     end
-</xmp>
+</pre>
 
 </body>
 </html>

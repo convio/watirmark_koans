@@ -19,3 +19,10 @@
     overflow:  auto;
 
 }
+.ruby {
+    font-size: 12px;
+    font-family: monospace;
+    color: white;
+    background: black;
+    padding: 0.1em 0 0.2em 0;
+}
