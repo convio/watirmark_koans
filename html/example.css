@@ -26,3 +26,13 @@
     background: black;
     padding: 0.1em 0 0.2em 0;
 }
+p.hidden
+{
+    display: none;
+}
+p.errorMessage
+{
+    color: red;
+    margin: 5px 0px 0px 0px;
+}
+
