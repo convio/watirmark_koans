@@ -10,7 +10,7 @@ module PageHelpers
       $koan_browser = Watirmark::Page.browser
       Watirmark::Page.browser
     end
-    Watirmark::Page.browser = @@browser.frame(:id, 'page')
+    Watirmark::Page.browser = @@browser.frame(:id, 'example')
   end
 
 
@@ -18,7 +18,7 @@ module PageHelpers
 
   def goto(path)
     browser
-    $koan_browser.execute_script "parent.document.getElementById('page').src = \"#{path}\""
+    $koan_browser.execute_script "parent.document.getElementById('example').src = \"#{path}\""
   end
 
   def file_path(name)
