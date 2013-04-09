@@ -202,7 +202,7 @@ module EdgeCase
       @current_step_html << text
     end
 
-    def update_html
+    def show_html_koans
       File.open(STEP_HTML_FILE_NAME, 'w') do |f|
         f.print "<!DOCTYPE HTML>"
         f.print "<html>"
@@ -268,7 +268,7 @@ module EdgeCase
       else
         end_screen
       end
-      update_html
+      show_html_koans
     end
 
     def show_progress
