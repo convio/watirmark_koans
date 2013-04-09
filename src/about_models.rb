@@ -2,6 +2,10 @@ require_relative 'edgecase'
 
 class AboutModels < EdgeCase::Koan
 
+  def setup
+    show_page "model_factory.html"
+  end
+
   class Model < Watirmark::Model::Factory
     keywords [:amount, :firstname, :lastname, :cardnumber, :cvv]
 
