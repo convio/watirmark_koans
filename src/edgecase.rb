@@ -19,6 +19,11 @@ end
 
 require_relative 'page_helpers'
 
+
+# --------------------------------------------------------------------
+# Support code for the Ruby Koans.
+# --------------------------------------------------------------------
+
 # --------------------------------------------------------------------
 # Support code for the Ruby Koans.
 # --------------------------------------------------------------------
@@ -173,6 +178,7 @@ module EdgeCase
       @failed_test = nil
       @observations = []
       @current_step_html = []
+      File.open(STEP_HTML_FILE_NAME, 'w') { |f| f.print }
     end
 
     PROGRESS_FILE_NAME = '.path_progress'
