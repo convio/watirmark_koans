@@ -3,7 +3,7 @@ require_relative 'edgecase'
 class AboutModels < EdgeCase::Koan
 
   def setup
-    show_page "about_models.html"
+    show_page "page_object.html"
   end
 
   class DonationFormPage < Watirmark::Page

@@ -18,7 +18,7 @@ rescue LoadError
 end
 
 require_relative 'page_helpers'
-require_relative "../doc/AboutPageObjects"
+require_relative 'doc_loader'
 
 
 # --------------------------------------------------------------------
