@@ -443,9 +443,9 @@ module EdgeCase
     def setup
     end
 
+
     def update_doc
-      method_call = "#{@koan_file}DocHelper.#{@name}_doc"
-      eval (method_call)
+      Kernel.const_get("#{@koan_file}DocHelper").send("#{@name}_doc")
     end
 
     def teardown
