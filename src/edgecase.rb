@@ -18,6 +18,7 @@ rescue LoadError
 end
 
 require_relative 'page_helpers'
+require_relative "../doc/AboutPageObjects"
 
 
 # --------------------------------------------------------------------
@@ -442,11 +443,17 @@ module EdgeCase
     def setup
     end
 
+    def update_doc
+      method_call = "#{@koan_file}DocHelper.#{@name}_doc"
+      eval (method_call)
+    end
+
     def teardown
     end
 
     def meditate
       setup
+      update_doc
       begin
         send(name)
       rescue StandardError, EdgeCase::Sensei::AssertionError => ex
