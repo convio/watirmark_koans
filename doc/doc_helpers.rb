@@ -11,15 +11,12 @@ module DocHelpers
     end
     html += block.call.strip
     html.gsub!("\n", "\\n \\ ") # multiline escape for javascript
-puts html
     request = "return window.frames[0].document.getElementById('test_case_documentation').innerHTML = '#{html}'"
     $koan_browser.execute_script request
   end
 
   def ruby code
-    %Q{<pre class="ruby">
-#{code}
-      </pre>}
+    %Q{<pre class="ruby">#{code}</pre>}
   end
 
 end

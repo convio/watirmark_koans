@@ -11,15 +11,11 @@ class AboutPageObjects < EdgeCase::Koan
   end
 
   def test_about_page_objects
-    page = ContactPage.new
-    page.first_name.value = "Suzie"
-    assert_equal __('Suzie'), page.first_name.value
+    assert_equal __([:first_name, :last_name]), ContactPage.new.keywords
   end
 
-  def test_about_page_object_keywords
+  def test_about_page_object_browser
     page = ContactPage.new
-    assert_equal __('Once'), page.gift_type.value
-    page.gift_type = 'Recurring'
-    assert_equal __('Recurring'), page.gift_type.value
+    assert_equal __(true), page.browser == Page.browser
   end
 end
