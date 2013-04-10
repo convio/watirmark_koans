@@ -1,7 +1,7 @@
 begin
-  require File.dirname(__FILE__) + "/../src/page_helpers"
-rescue LoadError
   require File.dirname(__FILE__) + "/../koans/page_helpers"
+rescue LoadError
+  require File.dirname(__FILE__) + "/../src/page_helpers"
 end
 
 module AboutPageObjectsDocHelper
