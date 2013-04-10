@@ -27,7 +27,7 @@ contact = ContactPage.new(Watir::Browser.new)}
 browser = Page.browser}
   end
 
-  document "test_about_page_objects", "Page Objects" do
+  document :test_about_page_objects, "Page Objects" do
     %Q{
        <p>Page Objects describe a design pattern that provides an interface
           between a UI interface and a class.
@@ -43,7 +43,7 @@ browser = Page.browser}
     }
   end
 
-  document "test_about_page_object_browser", "Page Objects", "Browser" do
+  document :test_about_page_object_browser, "Page Objects", "Browser" do
      %Q{
        #{page_object_view}
 

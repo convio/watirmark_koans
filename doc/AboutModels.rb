@@ -21,7 +21,7 @@ class SingleDonorModel < Watirmark::Model.factory
 end}
   end
 
-  document "test_model_defaults", "Models", "Default Values" do
+  document :test_model_defaults, "Models", "Default Values" do
     %Q{
     #{donor_model}
     <p>Models can be defined with default values that you can access</p>
@@ -32,7 +32,7 @@ end}
     </pre>}
   end
 
-  document "test_model_value", "Models", "Getting Values"  do
+  document :test_model_value, "Models", "Getting Values"  do
     %Q{
     #{donor_model}
     <p>Models can be defined with default values that you can access</p>
@@ -43,7 +43,7 @@ end}
     </pre>}
   end
 
-  document "test_model_update_value", "Models", "Updating Default Values"  do
+  document :test_model_update_value, "Models", "Updating Default Values"  do
     %Q{
     #{donor_model}
     <p>Models allow you to update there default values</p>
@@ -55,7 +55,7 @@ end}
     </pre>}
   end
 
-  document "test_model_update", "Models", "Updating Default Values"   do
+  document :test_model_update, "Models", "Updating Default Values"   do
     %Q{
     #{donor_model}
     <p>Models allow you to update there default values</p>
@@ -67,7 +67,7 @@ end}
     </pre>}
   end
 
-  document "test_model_methods", "Models" , "Using Model Methods"  do
+  document :test_model_methods, "Models" , "Using Model Methods"  do
     %Q{
     #{donor_model}
     <p>You can define methods within a model that can be called</p>
@@ -77,7 +77,7 @@ end}
     </pre>}
   end
 
-  document "test_model_keywords", "Models", "Keywords"   do
+  document :test_model_keywords, "Models", "Keywords"   do
     %Q{
     #{donor_model}
     <p>Each models defines the keywords that can be used when populating page objects</p>
@@ -88,7 +88,7 @@ end}
     </pre>}
   end
 
-  document "test_controller_without_model_doc", "Models", "Using with a controller"  do
+  document :test_controller_without_model_doc, "Models", "Using with a controller"  do
     %Q{
     #{donor_model}
     <p>Use models with your controllers to keep you tests clean and easy to read</p>
@@ -99,7 +99,7 @@ end}
     </pre>}
   end
 
-  document "test_controller_with_model", "Models", "Using with a controller"  do
+  document :test_controller_with_model, "Models", "Using with a controller"  do
     %Q{
     #{donor_model}
     <p>Use models with your controllers to keep you tests clean and easy to read</p>
