@@ -1,7 +1,6 @@
 require_relative 'resources/example_template.rb'
 
-template = ExampleTemplate.new.example do
-  form do
+template = Template::Example.new do
     %Q{
 <table>
   <tr>
@@ -27,15 +26,7 @@ template = ExampleTemplate.new.example do
   </tr>
 </table>
 }
-  end
-
-  doc do
-    %Q{
-<h1>Page Objects</h1>
-<div id="test_case_documentation"/>
-}
-  end
 end
 
+puts template.generate
 
-puts template

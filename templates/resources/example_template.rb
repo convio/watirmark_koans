@@ -1,44 +1,20 @@
-class ExampleTemplate
+require_relative 'doc_template'
+require_relative 'form_template'
+require_relative 'header_template'
+require_relative 'footer_template'
 
-  def initialize
-    @html = ""
-  end
+module Template
+  class Example
+    def initialize &block
+      @html = ""
+      @content = block
+    end
 
-  def header header_content=nil
-    header = "<!DOCTYPE html>\n<html>\n"
-    header += "<head>\n#{header_content}\n</head>\n" if header_content
-    header += "<body>\n"
-  end
-
-  def example_header
-    header %Q{  <link href="example.css" rel="stylesheet" type="text/css">}
-  end
-
-
-  def footer
-    %Q{</body>\n</html>\n}
-  end
-
-  def example &block
-    @html = example_header
-    instance_eval(&block)
-    @html += footer
-  end
-
-  def div name, &content
-    div = header
-    div += (content.call)
-    div += footer
-    div.gsub!(/^/,'  ')
-    div = %Q{\n<div id="#{name}" class="#{name}">\n} + div + "</div>\n\n"
-    @html += div
-  end
-
-  def form &content
-    div 'form', &content
-  end
-
-  def doc &content
-    div 'doc', &content
+    def generate
+      @html = Header.new(%Q{  <link href="example.css" rel="stylesheet" type="text/css">}).generate
+      @html += Form.new(&@content).generate
+      @html += Doc.new.generate
+      @html += Footer.new.generate
+    end
   end
 end
