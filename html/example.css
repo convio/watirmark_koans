@@ -1,6 +1,6 @@
 .form {
-    width: 420px;
-    min-width: 420px;
+    width: 300px;
+    min-width: 300px;
     height: 588px;
     float:  left;
     background-color: #EAF4D9;
@@ -11,8 +11,8 @@
 }
 .doc {
     text-wrap: normal;
-    width: 420px;
-    min-width: 420px;
+    width: 540px;
+    min-width: 540px;
     height: 600px;
     float:  left;
     vertical-align: top;
