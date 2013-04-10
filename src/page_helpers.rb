@@ -26,10 +26,9 @@ module PageHelpers
   end
 
   def document &block
-    begin
-      browser.execute_script "return window.frames[0].document.getElementById('test_case_documentation').innerHTML='#{block.call}'"
-    rescue Selenium::WebDriver::Error::JavascriptError
-      browser.execute_script "return document.getElementById('test_case_documentation').innerHTML='#{block.call}'"
-    end
+    html = block.call.strip
+    html.gsub!("\n", "\\n \\ ") # multiline escape for javascript
+    request = "return window.frames[0].document.getElementById('test_case_documentation').innerHTML = '#{html}'"
+    $koan_browser.execute_script request
   end
 end
