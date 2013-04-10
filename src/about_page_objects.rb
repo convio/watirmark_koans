@@ -10,13 +10,13 @@ class AboutPageObjects < EdgeCase::Koan
     keyword(:last_name) { browser.text_field(:id => 'last_name') }
   end
 
-  def test_use_page_objects_to_read_values
+  def test_about_page_objects
     page = ContactPage.new
     page.first_name.value = "Suzie"
     assert_equal __('Suzie'), page.first_name.value
   end
 
-  def test_use_page_objects_to_write_values
+  def test_about_page_object_keywords
     page = ContactPage.new
     assert_equal __('Once'), page.gift_type.value
     page.gift_type = 'Recurring'
