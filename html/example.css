@@ -1,11 +1,13 @@
 .form {
     width: 420px;
     min-width: 420px;
-    height: 600px;
+    height: 588px;
     float:  left;
     background-color: #EAF4D9;
     font-size:  12px;
+    padding-top: 1em;
     padding-left: 1em;
+    border: solid 1px;
 }
 .doc {
     text-wrap: normal;
@@ -19,6 +21,9 @@
     overflow:  auto;
     padding-left: 1em;
     padding-right: 1em;
+    border: solid 1px;
+    border-left: none;
+
 }
 .ruby {
     font-size: 12px;
