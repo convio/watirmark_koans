@@ -9,7 +9,6 @@ class AboutModels < EdgeCase::Koan
   class DonationFormPage < Watirmark::Page
     keyword(:firstname) { browser.text_field(:id, "first_name") }
     keyword(:lastname) { browser.text_field(:id, "last_name") }
-    keyword(:gift_type) { browser.select_list(:id, "gift_type")}
   end
 
   class DonationForm < Watirmark::WebPage::Controller
@@ -23,7 +22,6 @@ class AboutModels < EdgeCase::Koan
     defaults do
       firstname { "Robby" }
       lastname { "Smith" }
-      gift_type { "Once" }
     end
 
     def full_name
@@ -60,14 +58,12 @@ class AboutModels < EdgeCase::Koan
 
   def test_controller_without_model
     controller = DonationForm.new({:firstname => "Robby",
-                                   :lastname => "Smith",
-                                   :gift_type => "Once"})
+                                   :lastname => "Smith"})
     controller.run :populate_data
 
     page = DonationFormPage.new
     assert_equal __("Robby"), page.firstname.value
     assert_equal __("Smith"), page.lastname.value
-    assert_equal __("Once"), page.gift_type.value
   end
 
   def test_controller_with_model
@@ -78,6 +74,5 @@ class AboutModels < EdgeCase::Koan
     page = DonationFormPage.new
     assert_equal __("Robby"), page.firstname.value
     assert_equal __("Smith"), page.lastname.value
-    assert_equal __("Once"), page.gift_type.value
   end
 end

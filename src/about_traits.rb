@@ -9,7 +9,6 @@ module Watirmark::Model
 
   trait :donor do
     traits :person
-    amount {"10.00"}
   end
 end
 
@@ -20,7 +19,6 @@ class AboutTraits < EdgeCase::Koan
   end
 
   class DonationFormPage < Watirmark::Page
-    keyword(:amount) { browser.text_field(:id, "amount") }
     keyword(:firstname) { browser.text_field(:id, "first_name") }
     keyword(:lastname) { browser.text_field(:id, "last_name") }
   end
@@ -32,7 +30,6 @@ class AboutTraits < EdgeCase::Koan
   class DonorModelWithOutTrait < Watirmark::Model::Factory
     keywords DonationFormPage.keywords
     defaults do
-      amount { "10.00"}
       firstname { "Robby" }
       lastname { "Smith" }
     end
@@ -53,14 +50,12 @@ class AboutTraits < EdgeCase::Koan
 
   def test_model_without_trait_values
     model = DonorModelWithOutTrait.new
-    assert_equal __("10.00"), model.amount
     assert_equal __("Robby"), model.firstname
     assert_equal __("Smith"), model.lastname
   end
 
   def test_model_with_taits
     model = DonorModelTrait.new
-    assert_equal __("10.00"), model.amount
     assert_equal __("Robby"), model.firstname
     assert_equal __("Smith"), model.lastname
   end
@@ -71,7 +66,6 @@ class AboutTraits < EdgeCase::Koan
     controller.run :populate_data
 
     page = DonationFormPage.new
-    assert_equal __("10.00"), page.amount.value
     assert_equal __("Robby"), page.firstname.value
     assert_equal __("Smith"), page.lastname.value
   end
@@ -82,7 +76,6 @@ class AboutTraits < EdgeCase::Koan
     controller.run :populate_data
 
     page = DonationFormPage.new
-    assert_equal __("10.00"), page.amount.value
     assert_equal __("Robby"), page.firstname.value
     assert_equal __("Smith"), page.lastname.value
   end
