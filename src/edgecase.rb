@@ -266,10 +266,10 @@ module EdgeCase
         guide_through_error
         a_zenlike_statement
         show_progress
+        show_html_koans
       else
         end_screen
       end
-      show_html_koans
     end
 
     def show_progress
@@ -322,12 +322,12 @@ module EdgeCase
  :::::::::::,                                                     ,::::::::::::
 :::::::::::::                                                     ,::::::::::::
 ::::::::::::                      Watirmark Koans                  ::::::::::::,
-::::::::::::#{                  ruby_version                     },::::::::::::,
+::::::::::::#{                    ruby_version                   },::::::::::::,
 :::::::::::,                                                      , ::::::::::::
-,:::::::::::::,                based on software by              ,,::::::::::::,
+,:::::::::::::,                                                  ,,::::::::::::,
 ::::::::::::::                                                    ,::::::::::::
  ::::::::::::::,                                                 ,:::::::::::::
- ::::::::::::,             EdgeCase Software Artisans           , ::::::::::::
+ ::::::::::::,                                                   , ::::::::::::
   :,::::::::: ::::                                               :::::::::::::
    ,:::::::::::  ,:                                          ,,:::::::::::::,
      ::::::::::::                                           ,::::::::::::::,
