@@ -24,7 +24,7 @@ module AboutModelsDocHelper
 </pre>}
   end
 
-  def test_model_defaults_doc
+  def test_model_defaults
     document do
       html = header
       html += %Q{
@@ -37,7 +37,7 @@ module AboutModelsDocHelper
     end
   end
 
-  def test_model_value_doc
+  def test_model_value
     document do
       html = header
       html += %Q{
@@ -50,7 +50,7 @@ module AboutModelsDocHelper
     end
   end
 
-  def test_model_update_value_doc
+  def test_model_update_value
     document do
       html = header
       html += %Q{
@@ -64,7 +64,7 @@ module AboutModelsDocHelper
     end
   end
 
-  def test_model_update_doc
+  def test_model_update
     document do
       html = header
       html += %Q{
@@ -78,7 +78,7 @@ module AboutModelsDocHelper
     end
   end
 
-  def test_model_methods_doc
+  def test_model_methods
     document do
       html = header
       html += %Q{
@@ -91,7 +91,7 @@ module AboutModelsDocHelper
     end
   end
 
-  def test_model_keywords_doc
+  def test_model_keywords
     document do
       html = header
       html += %Q{
@@ -117,7 +117,7 @@ module AboutModelsDocHelper
     end
   end
 
-  def test_controller_with_model_doc
+  def test_controller_with_model
     document do
       html = header
       html += %Q{
