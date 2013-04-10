@@ -27,41 +27,35 @@ contact = ContactPage.new(Watir::Browser.new)}
 browser = Page.browser}
   end
 
-  def test_about_page_objects
-    document "Page Objects" do
-      %Q{
-         <p>Page Objects describe a design pattern that provides an interface
-            between a UI interface and a class.
+  document "test_about_page_objects", "Page Objects" do
+    %Q{
+       <p>Page Objects describe a design pattern that provides an interface
+          between a UI interface and a class.
 
-         <p>We use it because it allows us to refer to any UI element with a keyword and
-            use that keyword in the rest of our test infrastructure. If the UI changes,
-            we update it in exactly one place, the Page Object.
+       <p>We use it because it allows us to refer to any UI element with a keyword and
+          use that keyword in the rest of our test infrastructure. If the UI changes,
+          we update it in exactly one place, the Page Object.
 
-         <p>For this example, we define the Page as follows:
-            #{page_object_view}
+       <p>For this example, we define the Page as follows:
+          #{page_object_view}
 
-         <p>The page object returns the list of known keywords with the #keywords method.
-      }
-    end
+       <p>The page object returns the list of known keywords with the #keywords method.
+    }
   end
 
-  def test_about_page_object_browser
-    document "Page Objects", "Browser" do
-       %Q{
-         #{page_object_view}
+  document "test_about_page_object_browser", "Page Objects", "Browser" do
+     %Q{
+       #{page_object_view}
 
-         <p>You will notice that there is a method #browser in the keyword definitions. This
-            method will return the current browser context, which is automatically set by Watirmark
-            #{new_page_object}
+       <p>You will notice that there is a method #browser in the keyword definitions. This
+          method will return the current browser context, which is automatically set by Watirmark
+          #{new_page_object}
 
-         <p> You can override the default browser by specifying the browser you want
-             #{overriding_the_browser}
+       <p> You can override the default browser by specifying the browser you want
+           #{overriding_the_browser}
 
-         <p> We share this browser across classes by storing it in a class method for Page
-             #{global_page_context}
-      }
-    end
+       <p> We share this browser across classes by storing it in a class method for Page
+           #{global_page_context}
+    }
   end
-
 end
-
