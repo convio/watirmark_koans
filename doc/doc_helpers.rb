@@ -16,7 +16,10 @@ module DocHelpers
   end
 
   def ruby code
-    %Q{<pre class="ruby">#{code}</pre>}
+    %Q{<pre class="ruby">
+
+#{code.strip}
+</pre>}
   end
 
 end
