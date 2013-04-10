@@ -9,11 +9,11 @@ module Template
     end
 
     def generate
-      div = Header.new.generate
-      div += (@content.call)
-      div += Footer.new.generate
-      div.gsub!(/^/, '  ')
-      %Q{\n<div id="form" class="form">\n} + div + "</div>\n\n"
+      html = Header.new.generate
+      html += (@content.call)
+      html += Footer.new.generate
+      html.gsub!(/^/, '  ')
+      %Q{\n<div id="form" class="form">\n} + html + "</div>\n\n"
     end
   end
 end
