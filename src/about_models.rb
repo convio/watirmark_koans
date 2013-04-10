@@ -7,9 +7,9 @@ class AboutModels < EdgeCase::Koan
   end
 
   class DonationFormPage < Watirmark::Page
-    keyword(:amount) { browser.text_field(:id, "amount") }
     keyword(:firstname) { browser.text_field(:id, "first_name") }
     keyword(:lastname) { browser.text_field(:id, "last_name") }
+    keyword(:gift_type) { browser.select_list(:id, "gift_type")}
   end
 
   class DonationForm < Watirmark::WebPage::Controller
@@ -18,12 +18,12 @@ class AboutModels < EdgeCase::Koan
 
 
   class DonationModel < Watirmark::Model::Factory
-    keywords [:amount, :firstname, :lastname]
+    keywords DonationFormPage.keywords
 
     defaults do
-      amount { "10.00" }
       firstname { "Robby" }
       lastname { "Smith" }
+      gift_type { "Once" }
     end
 
     def full_name
@@ -32,17 +32,17 @@ class AboutModels < EdgeCase::Koan
   end
 
   def test_model_defaults
-    assert_equal __(true), DonationModel.new.respond_to?(:amount)
+    assert_equal __(true), DonationModel.new.respond_to?(:firstname)
   end
 
   def test_model_value
-    assert_equal __("10.00"), DonationModel.new.amount
+    assert_equal __("Robby"), DonationModel.new.firstname
   end
 
   def test_model_update_value
     model = DonationModel.new
-    model.amount = "55.00"
-    assert_equal __("55.00"), model.amount
+    model.firstname = "Joey"
+    assert_equal __("Joey"), model.firstname
   end
 
   def test_model_update
@@ -55,19 +55,19 @@ class AboutModels < EdgeCase::Koan
   end
 
   def test_model_keywords
-    assert_equal __([:amount, :firstname, :lastname]), DonationModel.new.keywords
+    assert_equal __(DonationFormPage.keywords), DonationModel.new.keywords
   end
 
   def test_controller_without_model
-    controller = DonationForm.new({:amount => "10.00",
-                                   :firstname => "Robby",
-                                   :lastname => "Smith"})
+    controller = DonationForm.new({:firstname => "Robby",
+                                   :lastname => "Smith",
+                                   :gift_type => "Once"})
     controller.run :populate_data
 
     page = DonationFormPage.new
-    assert_equal __("10.00"), page.amount.value
     assert_equal __("Robby"), page.firstname.value
     assert_equal __("Smith"), page.lastname.value
+    assert_equal __("Once"), page.gift_type.value
   end
 
   def test_controller_with_model
@@ -76,8 +76,8 @@ class AboutModels < EdgeCase::Koan
     controller.run :populate_data
 
     page = DonationFormPage.new
-    assert_equal __("10.00"), page.amount.value
     assert_equal __("Robby"), page.firstname.value
     assert_equal __("Smith"), page.lastname.value
+    assert_equal __("Once"), page.gift_type.value
   end
 end
