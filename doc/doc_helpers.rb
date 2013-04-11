@@ -11,8 +11,8 @@ module DocHelpers
         html = ""
       end
       html += block.call.strip
-      html.gsub!("\n", "\\n \\ ") # multiline escape for javascript
-      html.gsub!("'", "\\\\'")    # escape apostrophes in the html
+      html = escape_multiline(html)
+      html = escape_apostrophes(html)
       request = "parent.window.frames[0].document.getElementById('test_case_documentation').innerHTML = '#{html}'"
       $koan_browser.execute_script request
     end
@@ -24,5 +24,16 @@ module DocHelpers
 #{code.strip}
 </pre>}
   end
+
+  private
+
+  def escape_multiline html
+    html.gsub!("\n", "\\n \\ ")
+  end
+
+  def escape_apostrophes html
+    html.gsub!("'", "\\\\'")
+  end
+
 
 end
