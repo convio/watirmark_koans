@@ -12,7 +12,7 @@ module DocHelpers
       end
       html += block.call.strip
       html.gsub!("\n", "\\n \\ ") # multiline escape for javascript
-      request = "return window.frames[0].document.getElementById('test_case_documentation').innerHTML = '#{html}'"
+      request = "parent.window.frames[0].document.getElementById('test_case_documentation').innerHTML = '#{html}'"
       $koan_browser.execute_script request
     end
   end
