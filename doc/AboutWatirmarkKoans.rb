@@ -1,6 +1,6 @@
 require_relative "doc_helpers"
 
-module AboutWatirmarkKoansDocHelper
+module AboutWatirmarkKoansDoc
   include DocHelpers
   extend self
 

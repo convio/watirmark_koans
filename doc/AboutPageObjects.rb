@@ -1,6 +1,6 @@
 require_relative "doc_helpers"
 
-module AboutPageObjectsDocHelper
+module AboutPageObjectsDoc
   include DocHelpers
   extend self
 

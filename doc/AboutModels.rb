@@ -1,6 +1,6 @@
 require_relative "doc_helpers"
 
-module AboutModelsDocHelper
+module AboutModelsDoc
   include DocHelpers
   extend self
 

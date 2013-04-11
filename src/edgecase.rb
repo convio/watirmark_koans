@@ -407,7 +407,7 @@ module EdgeCase
 
 
     def update_doc
-      Kernel.const_get("#{@koan_file}DocHelper").send(@name)
+      Kernel.const_get("#{@koan_file}Doc").send(@name)
     end
 
     def teardown
