@@ -88,7 +88,7 @@ end}
     </pre>}
   end
 
-  document :test_controller_without_model_doc, "Models", "Using with a controller"  do
+  document :test_controller_without_model, "Models", "Using with a controller"  do
     %Q{
     #{donor_model}
     <p>Use models with your controllers to keep you tests clean and easy to read</p>
