@@ -25,4 +25,9 @@ class AboutPageObjects < EdgeCase::Koan
     page.first_name = "Fred"
     assert_equal __("Fred"), page.first_name
   end
+
+  def test_about_page_object_subclassing
+    page = UserPage.new
+    assert_equal __([:first_name, :last_name, :username, :password]), page.keywords
+  end
 end

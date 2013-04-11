@@ -13,6 +13,21 @@ end
 }
   end
 
+  def subclassed_page_object_view
+    ruby %Q{
+class ContactPage < Watirmark::Page
+  keyword(:first_name) { browser.text_field(:id => "first_name") }
+  keyword(:last_name)  { browser.text_field(:id => "last_name")  }
+end
+
+class User < ContactPage
+  keyword(:username) { browser.text_field(:id => "username") }
+  keyword(:password) { browser.text_field(:id => "password") }
+end
+}
+ end
+
+
   def new_page_object
     ruby %Q{
 contact = ContactPage.new
@@ -86,6 +101,16 @@ page.first_name.html.should ==
     <p>Of course since they are Watir objects you can also query them for anything you could do with a normal Watir element
 
     #{call_watir_methods}
+    }
+  end
+
+  document :test_about_page_object_subclassing, "Page Objects", "Subclassing" do
+    %Q{
+    #{subclassed_page_object_view}
+
+    <p> Page Objects can also be subclassed. When you create a subclass, it will automatically inherit the
+        keywords defined in the parent class. So in this example, the UserPage class should also inherit the
+        keywords :first_name and :last_name.
     }
   end
 end
