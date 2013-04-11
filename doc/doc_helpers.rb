@@ -24,7 +24,7 @@ module DocHelpers
   def ruby code
     %Q{<pre class="ruby">
 
-#{code.strip}
+#{escape_html_tags(code.strip)}
 </pre>}
   end
 
@@ -40,5 +40,10 @@ module DocHelpers
     html
   end
 
+  def escape_html_tags html
+    html.gsub!("<", "&lt;")
+    html.gsub!(">", "&gt;")
+    html
+  end
 
 end
