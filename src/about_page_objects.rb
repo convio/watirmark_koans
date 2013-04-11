@@ -21,13 +21,18 @@ class AboutPageObjects < EdgeCase::Koan
 
   def test_about_page_object_getters_and_setters
     page = ContactPage.new
-    assert_equal __("Suzie"), page.first_name
-    page.first_name = "Fred"
-    assert_equal __("Fred"), page.first_name
+    assert_equal __("Suzie"), page.first_name.value
+    page.first_name.value = "Fred"
+    assert_equal __("Fred"), page.first_name.value
+  end
+
+  class UserPage < ContactPage
+    keyword(:password) { browser.text_field(:id => "password") }
+    keyword(:username) { browser.text_field(:id => "username") }
   end
 
   def test_about_page_object_subclassing
     page = UserPage.new
-    assert_equal __([:first_name, :last_name, :username, :password]), page.keywords
+    assert_equal __([:first_name, :last_name, :username, :password]), page.keywords.sort
   end
 end

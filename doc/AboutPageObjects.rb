@@ -20,9 +20,9 @@ class ContactPage < Watirmark::Page
   keyword(:last_name)  { browser.text_field(:id => "last_name")  }
 end
 
-class User < ContactPage
-  keyword(:username) { browser.text_field(:id => "username") }
+class UserPage < ContactPage
   keyword(:password) { browser.text_field(:id => "password") }
+  keyword(:username) { browser.text_field(:id => "username") }
 end
 }
  end
