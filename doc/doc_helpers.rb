@@ -15,7 +15,6 @@ module DocHelpers
       html += block.call.strip
       html = escape_multiline(html)
       html = escape_apostrophes(html)
-      puts html
       request = "parent.window.frames[0].document.getElementById('test_case_documentation').innerHTML = '#{html}'"
       $koan_browser.execute_script request
     end
