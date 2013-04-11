@@ -3,10 +3,12 @@ module DocHelpers
   def document method, h1=nil, h2=nil, &block
     define_method method do
       if h1
-        html = "<h1>#{h1}</h1>\n<hr>"
         if h2
-          html += "<h2>#{h2}</h2>\n"
+          title = "#{h1} - #{h2}"
+        else
+          title = h1
         end
+        html = "<h1>#{title}</h1>\n<hr>"
       else
         html = ""
       end
