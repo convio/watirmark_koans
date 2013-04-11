@@ -19,7 +19,7 @@ class AboutPageObjects < EdgeCase::Koan
     assert_equal __(true), page.browser == Page.browser
   end
 
-  def test_about_page_object_getting_and_setting_values
+  def test_about_page_object_getters_and_setters
     page = ContactPage.new
     assert_equal __("Suzie"), page.first_name
     page.first_name = "Fred"

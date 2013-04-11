@@ -19,12 +19,6 @@ contact = ContactPage.new
 }
   end
 
-  def overriding_the_browser
-    ruby %Q{
-contact = ContactPage.new(Watir::Browser.new)
-}
-  end
-
   def global_page_context
     ruby %Q{
 browser = Page.browser
@@ -44,7 +38,8 @@ page.first_name.value.should == 'Fred'
     ruby %Q{
 page = ContactPage.new
 page.first_name.visible?.should be_true
-page.first_name.html.should == '<input id="first_name" type="text" value="Suzie"></input>'
+page.first_name.html.should ==
+ '<input id="first_name" type="text" value="Suzie"></input>'
 }
   end
 
@@ -52,14 +47,15 @@ page.first_name.html.should == '<input id="first_name" type="text" value="Suzie"
     %Q{
     <p>A Page Object is a design pattern providing an interface between a web page and your code.
 
-    <p>We use it because it allows us to represent any UI element with a keyword and
+    <p>This allows us to represent any UI element with a keyword and
       use that keyword in the rest of our test infrastructure. If the UI changes,
-      we update it in exactly one place, the Page Object, and the rest of the code references the keyword.
+      we update it in exactly one place, the page object, and the rest of the code references the keyword.
 
-    <p>For this example, we define the Page as follows:
+    <p>For this example, a page object for the fields on the left could look like this:
       #{page_object_view}
 
-    <p>The page object returns the list of known keywords with the #keywords method.
+    <p>In Watirmark we also sometimes refer to the page objects as Views since they
+       represent the View portion of the Model-View-Controller design.
     }
   end
 
@@ -69,21 +65,20 @@ page.first_name.html.should == '<input id="first_name" type="text" value="Suzie"
 
     <p>You will notice that there is a method #browser in the keyword definitions. This
       method will return the current browser context, which is automatically set by Watirmark
+      when you instantiate the page.
       #{new_page_object}
 
-    <p> You can override the default browser by specifying the browser you want
-       #{overriding_the_browser}
-
-    <p> We share this browser across classes by storing it in a class method for Page
+    <p> Watirmark shares the browser by storing it in a class method for Page and using it by default
        #{global_page_context}
+
     }
   end
 
-  document :test_about_page_object_getting_and_setting_values, "Page Objects", "Getting and Setting Values" do
+  document :test_about_page_object_getters_and_setters, "Page Objects", "Getting and Setting Values" do
     %Q{
     #{page_object_view}
 
-    <p>When the Page Object is instantiated, it creates a getter and setter method for every keyword. In this
+    <p>When the Page Object is instantiated, a getter and setter method are automatically creater for every keyword. In this
        case the keywords are returning Watir objects so we can get and set the objects using the #value method
 
     #{get_and_set_values}
