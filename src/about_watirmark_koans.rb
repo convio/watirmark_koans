@@ -6,7 +6,7 @@ class AboutWatirmarkKoans < EdgeCase::Koan
   end
 
   def test_about_watirmark_koans
-    assert_equal __(), true
+    assert false, "Change this assertion to true to continue!"
   end
 
 end
