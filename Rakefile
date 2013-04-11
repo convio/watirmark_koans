@@ -13,12 +13,14 @@ PROB_DIR = 'koans'
 HTML_DIR = 'html'
 TEMPLATE_DIR = 'templates'
 DIST_DIR = 'dist'
+IMAGE_DIR = "#{HTML_DIR}/images"
 
 SRC_FILES = FileList["#{SRC_DIR}/*"]
 KOAN_FILES = SRC_FILES.pathmap("#{PROB_DIR}/%f")
 TEMPLATE_FILES = FileList["#{TEMPLATE_DIR}/*"]
 HTML_FILES = TEMPLATE_FILES.pathmap("#{HTML_DIR}/%f")
-
+TEMPLATE_IMAGE_FILES = FileList["#{TEMPLATE_DIR}/resources/images/*"]
+IMAGE_FILES = TEMPLATE_IMAGE_FILES.pathmap("#{IMAGE_DIR}/%f")
 
 today = Time.now.strftime("%Y-%m-%d")
 TAR_FILE = "#{DIST_DIR}/rubykoans-#{today}.tgz"
@@ -75,6 +77,10 @@ module Templates
       outs.puts `ruby #{infile}`
     end
   end
+
+  def Templates.move_image(infile, outfile)
+    cp infile, outfile
+  end
 end
 
 module RubyImpls
@@ -115,14 +121,17 @@ end
 directory DIST_DIR
 directory PROB_DIR
 directory HTML_DIR
+directory IMAGE_DIR
+
 
 desc "Generate the Koans from the source files from scratch."
 task :regen => [:clobber_koans, :gen]
 
 desc "Generate the Koans from the changed source files."
-task :gen => [:gen_koans, :gen_html]
+task :gen => [:gen_koans, :gen_html, :gen_html_images]
 task :gen_koans => KOAN_FILES + [PROB_DIR + "/README.rdoc"]
 task :gen_html => HTML_FILES + [HTML_DIR]
+task :gen_html_images => IMAGE_FILES + [IMAGE_DIR]
 
 task :clobber_koans do
   rm_r PROB_DIR
@@ -143,6 +152,13 @@ TEMPLATE_FILES.each do |html_template|
     Templates.make_template(html_template, t.name) unless t.name =~ /resources/
   end
 end
+
+TEMPLATE_IMAGE_FILES.each do |image|
+  file image.pathmap("#{IMAGE_DIR}/%f") => [IMAGE_DIR, image] do |t|
+    Templates.move_image(image, t.name)
+  end
+end
+
 
 task :run do
   puts 'koans'
