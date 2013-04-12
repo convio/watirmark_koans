@@ -13,6 +13,7 @@ end
 
 begin
   require 'watirmark'
+  require_relative "extensions"
 rescue LoadError
   raise "Please run 'bundle install' to get the koan dependencies"
 end
@@ -485,7 +486,10 @@ module EdgeCase
   end
 
   class ThePath
+    include PageHelpers
+
     def walk
+      open_browser
       sensei = EdgeCase::Sensei.new
       each_step do |step|
         sensei.observe(step.meditate)

@@ -12,3 +12,14 @@ module Watir
     end
   end
 end
+
+# stub out navigation errors
+module Watirmark
+  class Page
+    def create(*args)
+    end
+
+    def edit(*args)
+    end
+  end
+end
