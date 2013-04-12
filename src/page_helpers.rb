@@ -1,6 +1,7 @@
 module PageHelpers
   def show_page name
     goto file_path(name)
+    update_doc
   end
 
   def browser

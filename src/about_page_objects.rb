@@ -36,3 +36,19 @@ class AboutPageObjects < EdgeCase::Koan
     assert_equal __([:first_name, :last_name, :username, :password]), page.keywords.sort
   end
 end
+
+
+class AboutPageObjectUpdates < EdgeCase::Koan
+  class ContactPage < Watirmark::Page
+    keyword(:first_name) { browser.text_field(:id => 'first_name') }
+    keyword(:last_name)  { browser.text_field(:id => 'last_name') }
+  end
+
+  def test_about_page_object_updates
+    show_page "page_object_update.html"
+    page = ContactPage.new
+    assert_nothing_raised do
+      page.first_name = "Sally"
+    end
+  end
+end

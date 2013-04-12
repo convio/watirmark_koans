@@ -114,3 +114,4 @@ page.first_name.html.should ==
     }
   end
 end
+

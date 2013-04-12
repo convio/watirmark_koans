@@ -415,7 +415,6 @@ module EdgeCase
 
     def meditate
       setup
-      update_doc
       begin
         send(name)
       rescue StandardError, EdgeCase::Sensei::AssertionError => ex
