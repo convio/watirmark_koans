@@ -43,7 +43,7 @@ end
     %Q{
     #{updated_page_object_view}
 
-    <p>Another new release, and this time the developer added a field. Update the Page Object
+    <p>In this release, the developer added a new field. Update the Page Object
        with a new keyword to handle populating the middle name.
     }
   end
