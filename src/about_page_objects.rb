@@ -38,7 +38,7 @@ class AboutPageObjects < EdgeCase::Koan
 end
 
 
-class AboutPageObjectUpdates < EdgeCase::Koan
+class AboutPageObjectChanges < EdgeCase::Koan
   class ContactPage < Watirmark::Page
     keyword(:first_name) { browser.text_field(:id => 'first_name') }
     keyword(:last_name)  { browser.text_field(:id => 'last_name') }
@@ -49,6 +49,14 @@ class AboutPageObjectUpdates < EdgeCase::Koan
     page = ContactPage.new
     assert_nothing_raised do
       page.first_name = "Sally"
+    end
+  end
+
+  def test_about_page_object_additions
+    show_page "page_object_addition.html"
+    page = ContactPage.new
+    assert_nothing_raised do
+      page.middle_name = "Alexander"
     end
   end
 end

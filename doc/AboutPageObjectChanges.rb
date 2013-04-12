@@ -1,6 +1,6 @@
 require_relative "doc_helpers"
 
-module AboutPageObjectUpdatesDoc
+module AboutPageObjectChangesDoc
   include DocHelpers
   extend self
 
@@ -9,6 +9,15 @@ module AboutPageObjectUpdatesDoc
 class ContactPage < Watirmark::Page
   keyword(:first_name) { browser.text_field(:id => "first_name") }
   keyword(:last_name)  { browser.text_field(:id => "last_name")  }
+end
+}
+  end
+
+  def updated_page_object_view
+    ruby %Q{
+class ContactPage < Watirmark::Page
+  keyword(:first_name) { browser.text_field(:id => "first.name") }
+  keyword(:last_name)  { browser.text_field(:id => "last.name")  }
 end
 }
   end
@@ -27,6 +36,15 @@ end
     <p>Look at the code for this test case and update it to work with the new UI
 
     <p valign=bottom>*<i>Internet Explorer will require you to install the Developer Tools<i/>
+    }
+  end
+
+  document :test_about_page_object_additions, "Page Objects", "Adding Keywords" do
+    %Q{
+    #{updated_page_object_view}
+
+    <p>Another new release, and this time the developer added a field. Update the Page Object
+       with a new keyword to handle populating the middle name.
     }
   end
 end
