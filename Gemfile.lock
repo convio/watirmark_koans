@@ -7,16 +7,16 @@ GIT
 
 GIT
   remote: git://github.com/convio/watirmark.git
-  revision: cd4d74b98b851f44e87f087850a6c8406f2e8425
+  revision: 1554ae94d457dfb9f12570cb3fe944648d850e62
   specs:
-    watirmark (5.14.40)
+    watirmark (5.14.43)
       activesupport (~> 3.1.11)
       american_date (~> 1.0)
       i18n (~> 0.6.1)
       logger (~> 1.2.8)
       nokogiri (~> 1.5.6)
       rubigen (~> 1.5.8)
-      selenium-webdriver (~> 2.30.0)
+      selenium-webdriver (~> 2.31.0)
       uuid (~> 2.3.6)
       watir-webdriver (>= 0.6.1)
 
@@ -28,8 +28,8 @@ GEM
     american_date (1.1.0)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
-    ffi (1.6.0)
-    ffi (1.6.0-x86-mingw32)
+    ffi (1.7.0)
+    ffi (1.7.0-x86-mingw32)
     i18n (0.6.4)
     logger (1.2.8)
     macaddr (1.6.1)
@@ -41,7 +41,7 @@ GEM
     rubigen (1.5.8)
       activesupport (>= 2.3.5, < 3.2.0)
     rubyzip (0.9.9)
-    selenium-webdriver (2.30.0)
+    selenium-webdriver (2.31.0)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
       rubyzip
