@@ -57,7 +57,7 @@ class AboutControllerVerification < EdgeCase::Koan
   def test_controller_verification
     show_page "controller_verification.html"
     contact = Contact.new(:first_name=>'Jeanette', :last_name=>'Winterson')
- contact.verify
+    contact.verify
   end
 
   def test_controller_verification_with_read_only_fields
@@ -73,12 +73,4 @@ class AboutControllerVerification < EdgeCase::Koan
 
 end
 
-
-#class AboutControllerOverrides < EdgeCase::Koan
-#  def setup
-#    show_page "page_object.html"
-#  end
-#
-#  def test_controller_value_override
-#end
 
