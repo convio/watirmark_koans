@@ -34,7 +34,7 @@ class AboutControllers < EdgeCase::Koan
   end
 
   def test_controller_other_actions
-    assert __(true), "CRUD operations are easy!"
+    assert false, "CRUD operations are easy!"
   end
 end
 
@@ -46,25 +46,29 @@ class AboutControllerVerification < EdgeCase::Koan
     keyword(:contact_read_only_field) { |id| browser.td(:id => id)  }
   end
 
-  class Contact < Watirmark::Page
+  class Contact < Watirmark::WebPage::Controller
+    @view=ContactPage
+  end
+
+  class ContactVerificationOverride < Watirmark::WebPage::Controller
     @view=ContactPage
   end
 
   def test_controller_verification
     show_page "controller_verification.html"
-    contact = ContactPage.new(:first_name=>'Bob', :last_name=>'Dole')
-    assert_nothing_raised { contact.verify }
+    contact = Contact.new(:first_name=>'Jeanette', :last_name=>'Winterson')
+ contact.verify
   end
 
   def test_controller_verification_with_read_only_fields
     show_page "controller_verification_with_read_only_fields.html"
-    contact = ContactPage.new(:first_name=>'Jeanette', :last_name=>'Winterson')
+    contact = ContactVerificationOverride.new(:first_name=>'Jeanette', :last_name=>'Winterson')
     assert_nothing_raised { contact.verify }
   end
 
   def test_controller_verification_only_keyword
     show_page "controller_verification_with_read_only_fields.html"
-    assert __(true), "verification keywords make the intent clearer"
+    assert false, "verification keywords make the intent clearer"
   end
 
 end

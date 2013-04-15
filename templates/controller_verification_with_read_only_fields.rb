@@ -2,7 +2,7 @@ require_relative 'resources/example_template.rb'
 
 template = Template::Example.new do
     %Q{
-<table>
+<table border=0>
   <tr>
     <td align="right">First Name:</td>
     <td id="first_name">Jeanette</td>

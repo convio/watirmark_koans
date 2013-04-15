@@ -50,13 +50,14 @@ end
 class Contact < Watirmark::WebPage::Controller
   @view = ContactPage
 
-  def verify_last_name
-    contact_read_only_field('last_name').value.should == @model.last_name
+  def verify_first_name
+    assert @view.contact_read_only_field('first_name').text == @model.first_name
   end
 
-  def verify_first_name
-    contact_read_only_field('first_name').value.should == @model.last_name
+  def verify_last_name
+    assert @view.contact_read_only_field('last_name').text == @model.last_name
   end
+
 end
 }
   end
@@ -85,7 +86,7 @@ end
        need to override how things are verified.
 
     <p>To do this, we add a callback method to our controller. Before any keyword element is verified, Watirmark
-       checks the controller to see if you've defined a method "verify_#{ELEMENT_NAME}". If that method exists,
+       checks the controller to see if you've defined a method "verify_ELEMENT_NAME". If that method exists,
        then it gets called in place of what it would normally have done.
 
     <p>Look at the HTML on the left pane. You'll see that in this page, the values are stored in a table.
