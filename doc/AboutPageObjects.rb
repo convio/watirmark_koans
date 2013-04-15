@@ -28,15 +28,11 @@ end
  end
 
 
-  def new_page_object
-    ruby %Q{
-contact = ContactPage.new
-}
-  end
-
   def global_page_context
     ruby %Q{
-browser = Page.browser
+def browser
+  Page.browser
+end
 }
   end
 
@@ -81,9 +77,9 @@ page.first_name.html.should ==
     <p>You will notice that there is a method #browser in the keyword definitions. This
       method will return the current browser context, which is automatically set by Watirmark
       when you instantiate the page.
-      #{new_page_object}
 
-    <p> Watirmark shares the browser by storing it in a class method for Page and using it by default
+    <p> In order to make sure we share the same browser instance across all of our tests, the Watir-Webdriver
+        instance is stored in Page.browser and used in the views with:
        #{global_page_context}
 
     }
