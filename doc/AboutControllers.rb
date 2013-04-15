@@ -13,6 +13,23 @@ end
 }
   end
 
+  def page_object_view_with_navigation
+    ruby %Q{
+class ContactPage < Watirmark::Page
+  keyword(:first_name) { browser.text_field(:id => "first_name") }
+  keyword(:last_name)  { browser.text_field(:id => "last_name")  }
+
+  def create(model)
+    # Navigate to the home page and hit the create button
+  end
+
+  def edit(model)
+    # Search for the record and hit the edit button
+  end
+end
+}
+  end
+
   def controller_view
     ruby %Q{
 class Contact < Watirmark::WebPage::Controller
@@ -125,6 +142,28 @@ contact.verify
 
     <p>To continue, make the controller for this test case use the model to populate the fields.
 
+    }
+  end
+
+  document :test_controller_other_actions, "Controllers", "Other Actions" do
+    %Q{
+      <h2>Editing a record</h2>
+
+      <p>In many cases, edit screens are almost identical to the form used to create the business object.
+         Because this pattern is so prevalent, an edit is very similar to a create except the navigation to
+         the page is different.
+
+      <p>So far we've been ignoring navigation but if we were to put some in place, we'd do that in the
+         page object (since that is our interface with the application). Generally search functions are the
+         same throught a web application so this is usually some common code mixed into the views.
+
+      #{page_object_view_with_navigation}
+
+      <h2>Verifying a record</h2>
+
+      <p>The controller verifies the record by using the navigation to the edit screen. Once it gets there,
+         instead of populating the data with the model, the controller verifies each field matches the
+         value in the model.
     }
   end
 

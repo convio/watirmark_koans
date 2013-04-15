@@ -32,4 +32,29 @@ class AboutControllers < EdgeCase::Koan
       contact.create
     end
   end
+
+  def test_controller_other_actions
+    assert __(true), "CRUD operations are easy!"
+  end
 end
+
+class AboutControllerVerification < EdgeCase::Koan
+  def setup
+    show_page "controller_verification.html"
+  end
+
+
+  #test until
+  #test verify
+
+end
+
+
+#class AboutControllerOverrides < EdgeCase::Koan
+#  def setup
+#    show_page "page_object.html"
+#  end
+#
+#  def test_controller_value_override
+#end
+
