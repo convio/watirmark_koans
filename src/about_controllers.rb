@@ -39,13 +39,33 @@ class AboutControllers < EdgeCase::Koan
 end
 
 class AboutControllerVerification < EdgeCase::Koan
-  def setup
-    show_page "controller_verification.html"
+
+  class ContactPage < Watirmark::Page
+    keyword(:first_name)              { browser.text_field(:id => 'first_name') }
+    keyword(:last_name)               { browser.text_field(:id => 'last_name') }
+    keyword(:contact_read_only_field) { |id| browser.td(:id => id)  }
   end
 
+  class Contact < Watirmark::Page
+    @view=ContactPage
+  end
 
-  #test until
-  #test verify
+  def test_controller_verification
+    show_page "controller_verification.html"
+    contact = ContactPage.new(:first_name=>'Bob', :last_name=>'Dole')
+    assert_nothing_raised { contact.verify }
+  end
+
+  def test_controller_verification_with_read_only_fields
+    show_page "controller_verification_with_read_only_fields.html"
+    contact = ContactPage.new(:first_name=>'Jeanette', :last_name=>'Winterson')
+    assert_nothing_raised { contact.verify }
+  end
+
+  def test_controller_verification_only_keyword
+    show_page "controller_verification_with_read_only_fields.html"
+    assert __(true), "verification keywords make the intent clearer"
+  end
 
 end
 

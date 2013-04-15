@@ -145,10 +145,8 @@ contact.verify
     }
   end
 
-  document :test_controller_other_actions, "Controllers", "Other Actions" do
+  document :test_controller_other_actions, "Controllers", "Editing a Record" do
     %Q{
-      <h2>Editing a record</h2>
-
       <p>In many cases, edit screens are almost identical to the form used to create the business object.
          Because this pattern is so prevalent, an edit is very similar to a create except the navigation to
          the page is different.
@@ -159,11 +157,7 @@ contact.verify
 
       #{page_object_view_with_navigation}
 
-      <h2>Verifying a record</h2>
-
-      <p>The controller verifies the record by using the navigation to the edit screen. Once it gets there,
-         instead of populating the data with the model, the controller verifies each field matches the
-         value in the model.
+      <p>Once we've navigated to the right edit page we populate all of the fields specified, just like in a create
     }
   end
 
