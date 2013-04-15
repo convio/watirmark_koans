@@ -11,25 +11,21 @@ module AboutMVCDoc
 
       <h2>Model</h2>
 
-      <p>The Model represents an abstraction of test data. This could be a user, a donation
-         or any other collection of data you want to populate or verify in the application. In many cases,
-         Models do not need any data to be specified and can make up unique data as you need it. This allows you
-         to write tests that create new users and then use those users to login to the application, without
-         having to worry about creating a name, address, username, etc.
+      <p>A Model represents the data that is used to create a business object in your application. This could be a user, a donation
+         or any other collection of data. In many cases, models can be created with default, unique data.
+         This is great because most of the time you don't need to specify all of the details every time
+         you create something new. For example you could just create a new contact using a model which would
+         automatically give you a unique contact with a name, address, username, etc.
 
       <p>The Model is generally instantiated from the test case, modified based on the requirements of the test
          and passed into the Controller. If a model is not specified when a controller is created, the controller
-         can create a default model for you.
+         will create the default model for you.
 
       <h2>Controller</h2>
 
-      <p>Controllers are the main interface your test cases use to work with the web application.
+      <p>Controllers are how you directly interact with the web application.
          They are responsible for populating the fields and reading back values. When you instantiate a controller,
          you give it a Model and tell it an action (create, edit, verify, etc).
-
-         Controllers are the only part of the test framework that know about the other actors in the MVC pattern.
-         Both the Model and the View only know about their own responsibilities and it's the controllers job
-         to determine how to use them.
 
       <h2>View</h2>
 
