@@ -26,6 +26,7 @@ module PageHelpers
     Watirmark::Session.instance.openbrowser
     $koan_browser = Watirmark::Page.browser
     $koan_browser.goto file_path('koans.html')
+    $koan_browser.window.resize_to(930, 1100)
   end
 end
 
