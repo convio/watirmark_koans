@@ -143,9 +143,12 @@ end
        but might have a different set of defaults to fulfill their intended roles.
 
        <p>To handle this cleanly, we stole an idea from FactoryGirl and implemented the #traits feature.
+          Traits are essentially a collection of model default values that can be reused and combined.
+
        #{define_trait}
 
-       <p>This sample defines a :person trait which we can then use in any model we create
+       <p>The above trait defines a :person which can then be included in models as follows:
+
        #{include_trait}
 
      }

@@ -27,8 +27,11 @@ class AboutModels < EdgeCase::Koan
   end
 
   def test_model_basics
-    assert_equal __("middle"), ContactModel.new.middle_name
-    assert_match __(/first_/), ContactModel.new.first_name
+    model = ContactModel.new
+    assert_equal __("middle"), model.middle_name
+    assert_match __(/first_/), model.first_name
+    model.first_name = 'Wilma'
+    assert_equal __, model.first_name
   end
 
   module ::Watirmark::Model
@@ -38,48 +41,15 @@ class AboutModels < EdgeCase::Koan
     end
   end
 
-
-  #trait :donor do
-  #  traits :person
-  #end
+  class ContactModelWithTraits < Watirmark::Model::Factory
+    keywords ContactPage.keywords
+  end
 
   def test_model_traits
-    assert_equal __([:person]), Watirmark::Model::Traits.instance[:donor].traits
+    assert_match __(/first_/), ContactModelWithTraits.new.first_name
   end
 
   def test_model_traits_containing_traits
-    assert_equal __([:donor]), DonorModelTrait.new.traits
-  end
-
-  def test_model_without_trait_values
-    model = DonorModelWithOutTrait.new
-    assert_equal __("Robby"), model.firstname
-    assert_equal __("Smith"), model.lastname
-  end
-
-  def test_model_with_taits
-    model = DonorModelTrait.new
-    assert_equal __("Robby"), model.firstname
-    assert_equal __("Smith"), model.lastname
-  end
-
-  def test_model_without_traits_in_controller
-    model = DonorModelWithOutTrait.new
-    controller = Donationform.new(model)
-    controller.run :populate_data
-
-    page = DonationFormPage.new
-    assert_equal __("Robby"), page.firstname.value
-    assert_equal __("Smith"), page.lastname.value
-  end
-
-  def test_model_with_traits_in_controller
-    model = DonorModelTrait.new
-    controller = Donationform.new(model)
-    controller.run :populate_data
-
-    page = DonationFormPage.new
-    assert_equal __("Robby"), page.firstname.value
-    assert_equal __("Smith"), page.lastname.value
+    assert_equal false, "Nested traits make it easier to maintain models."
   end
 end

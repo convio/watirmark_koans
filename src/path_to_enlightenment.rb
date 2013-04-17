@@ -11,7 +11,7 @@ require 'about_controllers'
 
 
 #TODO
-# advanced keywords: populate_, verify_, private_
 # process pages
 # radio maps
+# models containing models
 # *_until controller actions
