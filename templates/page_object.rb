@@ -1,4 +1,4 @@
-require_relative 'resources/example_template.rb'
+require_relative 'lib/example_template.rb'
 
 template = Template::Example.new do
     %Q{

@@ -14,13 +14,12 @@ HTML_DIR = 'html'
 TEMPLATE_DIR = 'templates'
 DIST_DIR = 'dist'
 IMAGE_DIR = "#{HTML_DIR}/images"
+CSS_DIR = "#{HTML_DIR}/css"
 
 SRC_FILES = FileList["#{SRC_DIR}/*"]
 KOAN_FILES = SRC_FILES.pathmap("#{PROB_DIR}/%f")
-TEMPLATE_FILES = FileList["#{TEMPLATE_DIR}/*"]
-HTML_FILES = TEMPLATE_FILES.pathmap("#{HTML_DIR}/%f")
-TEMPLATE_IMAGE_FILES = FileList["#{TEMPLATE_DIR}/resources/images/*"]
-IMAGE_FILES = TEMPLATE_IMAGE_FILES.pathmap("#{IMAGE_DIR}/%f")
+TEMPLATE_FILES = FileList["#{TEMPLATE_DIR}/**/*"]
+HTML_FILES = TEMPLATE_FILES.pathmap("%p").map{ |x| x.gsub!("templates/", '')}.delete_if{ |x| x =~/lib\//}
 
 today = Time.now.strftime("%Y-%m-%d")
 TAR_FILE = "#{DIST_DIR}/rubykoans-#{today}.tgz"
@@ -122,16 +121,15 @@ directory DIST_DIR
 directory PROB_DIR
 directory HTML_DIR
 directory IMAGE_DIR
-
+directory CSS_DIR
 
 desc "Generate the Koans from the source files from scratch."
 task :regen => [:clobber_koans, :gen]
 
 desc "Generate the Koans from the changed source files."
-task :gen => [:gen_koans, :gen_html, :gen_html_images]
+task :gen => [:gen_koans, :gen_html]
 task :gen_koans => KOAN_FILES + [PROB_DIR + "/README.rdoc"]
 task :gen_html => HTML_FILES + [HTML_DIR]
-task :gen_html_images => IMAGE_FILES + [IMAGE_DIR]
 
 task :clobber_koans do
   rm_r PROB_DIR
@@ -147,18 +145,21 @@ SRC_FILES.each do |koan_src|
   end
 end
 
-TEMPLATE_FILES.each do |html_template|
-  file html_template.pathmap("#{HTML_DIR}/%f") => [HTML_DIR, html_template] do |t|
-    Templates.make_template(html_template, t.name) unless t.name =~ /resources/
+HTML_FILES.each do |html_template|
+  file html_template => [HTML_DIR, IMAGE_DIR, CSS_DIR] do |t|
+    next if File.directory?("#{TEMPLATE_DIR}/#{t.name}")
+    source = "#{TEMPLATE_DIR}/#{html_template}"
+    destination = t.name
+    destination = "#{HTML_DIR}/#{t.name}"
+    destination.gsub!("resources/", "")
+    case t.name
+      when /resources/, /\.html$/
+        Templates.move_image(source, destination)
+      else
+        Templates.make_template(source, destination)
+    end
   end
 end
-
-TEMPLATE_IMAGE_FILES.each do |image|
-  file image.pathmap("#{IMAGE_DIR}/%f") => [IMAGE_DIR, image] do |t|
-    Templates.move_image(image, t.name)
-  end
-end
-
 
 task :run do
   puts 'koans'

@@ -10,7 +10,7 @@ module Template
     end
 
     def generate
-      html = Header.new(%Q{  <link href="example.css" rel="stylesheet" type="text/css">}).generate
+      html = Header.new(%Q{  <link href="css/example.css" rel="stylesheet" type="text/css">}).generate
       html += Form.new(&@content).generate
       html += Doc.new.generate
       html += Footer.new.generate
