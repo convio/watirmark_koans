@@ -10,13 +10,16 @@ class AboutPageObjects < EdgeCase::Koan
     keyword(:last_name) { browser.text_field(:id => 'last_name') }
   end
 
+  class AnotherPage < Watirmark::Page
+  end
+
   def test_about_page_objects
-    assert_equal __([:first_name, :last_name]), ContactPage.new.keywords
+    assert_equal  __([:first_name, :last_name]), ContactPage.new.keywords
   end
 
   def test_about_page_object_browser
-    page = ContactPage.new
-    assert_equal __(true), page.browser == Page.browser
+    assert_equal false, ContactPage.new.browser == Page.browser
+    assert_equal false, AnotherPage.new.browser == Page.browser
   end
 
   def test_about_page_object_getters_and_setters

@@ -39,18 +39,17 @@ end
   def get_and_set_values
     ruby %Q{
 page = ContactPage.new
-page.first_name.value.should == 'Suzie'
-page.first_name.value == "Fred"
-page.first_name.value.should == 'Fred'
+assert_equal page.first_name.value,  ''
+page.first_name.value = "Fred"
+assert_equal page.first_name.value, 'Fred'
 }
   end
 
   def call_watir_methods
     ruby %Q{
 page = ContactPage.new
-page.first_name.visible?.should be_true
-page.first_name.html.should ==
- '<input id="first_name" type="text" value="Suzie"></input>'
+assert_true page.first_name.visible?
+assert_equal page.first_name.html '<input id="first_name" type="text" value="Suzie"></input>'
 }
   end
 
@@ -65,7 +64,10 @@ page.first_name.html.should ==
     <p>For this example, a page object for the fields on the left could look like this:
       #{page_object_view}
 
-    <p>In Watirmark we also sometimes refer to the page objects as Views since they
+    <p>The keyword method declares an internal name for the HTML element and the block passed into the method
+       is the Watir code to access that element.
+
+    <p>In Watirmark we often refer to the page objects as Views since they
        represent the View portion of the Model-View-Controller design.
     }
   end
@@ -75,11 +77,10 @@ page.first_name.html.should ==
     #{page_object_view}
 
     <p>You will notice that there is a method #browser in the keyword definitions. This
-      method will return the current browser context, which is automatically set by Watirmark
-      when you instantiate the page.
+      method will return the current browser context, which is automatically set by Watirmark.
 
-    <p> In order to make sure we share the same browser instance across all of our tests, the Watir-Webdriver
-        instance is stored in Page.browser and used in the views with:
+    <p> To make sure we share the same browser across all of our tests, the Watir-Webdriver
+        instance is stored in Page.browser and used in the page objects:
        #{global_page_context}
 
     }
