@@ -209,7 +209,9 @@ module EdgeCase
         f.print "<!DOCTYPE HTML>"
         f.print "<html>"
         f.print "<pre>"
-        f.print @current_step_html.join
+        html =  @current_step_html.join
+        html.gsub!("<", "&lt;")
+        html.gsub!(">", "&gt;")
         f.print "<pre>"
         f.print "<html>"
       end
