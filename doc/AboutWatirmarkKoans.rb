@@ -9,6 +9,9 @@ module AboutWatirmarkKoansDoc
     <p>The Watirmark Koans are designed to be an interactive introduction to the
        Watirmark framework.
 
+    <p>We assume in this tutorial that you have some familiarity with the ruby koans by EdgeCase. This
+       software is based on the work from that project: <a href="http://rubykoans.com/">http://rubykoans.com/</a>
+
     <h2>Koan Interface</h2>
     <p> There are three parts to these koans:
       <ul>

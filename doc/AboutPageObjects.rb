@@ -89,7 +89,7 @@ page.first_name.html.should ==
     %Q{
     #{page_object_view}
 
-    <p>When the Page Object is instantiated, a getter and setter method are automatically creater for every keyword. In this
+    <p>When the Page Object is instantiated, a getter and setter method are automatically created for every keyword. In this
        case the keywords are returning Watir objects so we can get and set the objects using the #value method
 
     #{get_and_set_values}

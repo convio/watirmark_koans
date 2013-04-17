@@ -4,17 +4,17 @@ module AboutMVCDoc
   include DocHelpers
   extend self
 
-  document :test_about_mvc, "The MVC Design Pattern" do
+  document :test_about_mvc, "MVC Design Patterns" do
     %Q{
-      <p>Watirmark's architecture uses the Model/View/Controller design pattern. In our implementation,
+      <p>Watirmark's architecture uses the Model/View/Controller design patterns. In our implementation,
          we use these components as follows:
 
       <h2>Model</h2>
 
       <p>A Model represents the data that is used to create a business object in your application. This could be a user, a donation
          or any other collection of data. In many cases, models can be created with default, unique data.
-         This is great because most of the time you don't need to specify all of the details every time
-         you create something new. For example you could just create a new contact using a model which would
+         This is great because most of the time you don't care about most of the details, you just want to create an object.
+         For example you could just create a new contact using a model which would
          automatically give you a unique contact with a name, address, username, etc.
 
       <p>The Model is generally instantiated from the test case, modified based on the requirements of the test
@@ -31,7 +31,7 @@ module AboutMVCDoc
 
       <p>The View is the interface between the test framework and the web application. It provides methods
          named after keywords that handle populating the HTML elements associcated with those keywords. It's
-         based on the Page Object pattern so are also called Pages in Watirmark
+         based on the Page Object pattern so we refer to them interchangeably as Pages or Views.
 
 
       }
