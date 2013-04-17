@@ -21,18 +21,17 @@ module AboutMVCDoc
          and passed into the Controller. If a model is not specified when a controller is created, the controller
          will create the default model for you.
 
-      <h2>Controller</h2>
-
-      <p>Controllers are how you directly interact with the web application.
-         They are responsible for populating the fields and reading back values. When you instantiate a controller,
-         you give it a Model and tell it an action (create, edit, verify, etc).
-
       <h2>View</h2>
 
       <p>The View is the interface between the test framework and the web application. It provides methods
          named after keywords that handle populating the HTML elements associcated with those keywords. It's
          based on the Page Object pattern so we refer to them interchangeably as Pages or Views.
 
+      <h2>Controller</h2>
+
+      <p>Controllers are how you directly interact with the web application.
+         They are responsible for populating the fields and reading back values. When you instantiate a controller,
+         you give it a Model and tell it an action (create, edit, verify, etc).
 
       }
   end
