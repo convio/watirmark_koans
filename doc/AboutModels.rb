@@ -43,7 +43,7 @@ end
     ruby %Q{
 model = ContactModel.new
 assert_match /first_/, model.first_name
-assert_match /last_/, model.first_name
+assert_match /last_/, model.last_name
 }
   end
 
