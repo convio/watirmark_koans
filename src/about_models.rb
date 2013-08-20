@@ -8,6 +8,11 @@ class AboutModels < EdgeCase::Koan
     keyword(:last_name) { browser.text_field(:id, "last.name") }
   end
 
+  class DonorPage < ContactPage
+    keyword(:credit_card_number)    {}
+    keyword(:cvv)                   {}
+  end
+
   class ContactModel < Watirmark::Model::Factory
     keywords ContactPage.keywords
 
@@ -43,13 +48,28 @@ class AboutModels < EdgeCase::Koan
 
   class ContactModelWithTraits < Watirmark::Model::Factory
     keywords ContactPage.keywords
+    traits :person
   end
 
   def test_model_traits
     assert_match __(/first_/), ContactModelWithTraits.new.first_name
   end
 
+  module ::Watirmark::Model
+    trait :donor do
+      traits :person
+      credit_card_number  {"4111111111111111"}
+      cvv                 {"111"}
+    end
+  end
+
+  class DonorModel < Watirmark::Model::Factory
+    keywords DonorPage.keywords
+    traits :donor
+  end
+
   def test_model_traits_containing_traits
-    assert_equal false, "Nested traits make it easier to maintain models."
+    assert_match __(/first_/), DonorModel.new.first_name
+    assert_equal __, DonorMOdel.new.cvv
   end
 end
