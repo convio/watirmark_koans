@@ -27,8 +27,9 @@ class AboutControllers < EdgeCase::Koan
   end
 
   def test_controller_model_and_view
+    contact = Contact.new
+    assert_equal __(ContactModel), contact.model.class
     assert_nothing_raised do
-      contact = Contact.new
       contact.create
     end
   end
@@ -57,7 +58,8 @@ class AboutControllerVerification < EdgeCase::Koan
   def test_controller_verification
     show_page "controller_verification.html"
     contact = Contact.new(:first_name=>'Jeanette', :last_name=>'Winterson')
-    contact.verify
+    assert_nothing_raised { contact.verify }
+    assert false, "Verifications are easy!"
   end
 
   def test_controller_verification_with_read_only_fields
