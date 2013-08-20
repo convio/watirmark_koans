@@ -19,7 +19,7 @@ module AboutMVCDoc
 
       <p>The Model is generally instantiated from the test case, modified based on the requirements of the test
          and passed into the Controller. If a model is not specified when a controller is created, the controller
-         will create the default model for you.
+         will create the default model for you if it is defined.
 
       <h2>View</h2>
 
