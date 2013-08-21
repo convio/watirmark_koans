@@ -16,6 +16,7 @@ module DocHelpers
       html = escape_multiline(html)
       html = escape_apostrophes(html)
       request = "parent.window.frames[0].document.getElementById('test_case_documentation').innerHTML = '#{html}'"
+      Watir::Wait.until { Watirmark::Page.browser.div(:id, "test_case_documentation").exists? }
       $koan_browser.execute_script request
     end
   end
