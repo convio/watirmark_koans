@@ -15,6 +15,7 @@ TEMPLATE_DIR = 'templates'
 DIST_DIR = 'dist'
 IMAGE_DIR = "#{HTML_DIR}/images"
 CSS_DIR = "#{HTML_DIR}/css"
+JAVASCRIPT_DIR = "#{HTML_DIR}/javascript"
 
 SRC_FILES = FileList["#{SRC_DIR}/*"]
 KOAN_FILES = SRC_FILES.pathmap("#{PROB_DIR}/%f")
@@ -122,6 +123,7 @@ directory PROB_DIR
 directory HTML_DIR
 directory IMAGE_DIR
 directory CSS_DIR
+directory JAVASCRIPT_DIR
 
 desc "Generate the Koans from the source files from scratch."
 task :regen => [:clobber_koans, :gen]
@@ -146,7 +148,7 @@ SRC_FILES.each do |koan_src|
 end
 
 HTML_FILES.each do |html_template|
-  file html_template => [HTML_DIR, IMAGE_DIR, CSS_DIR] do |t|
+  file html_template => [HTML_DIR, IMAGE_DIR, CSS_DIR, JAVASCRIPT_DIR] do |t|
     next if File.directory?("#{TEMPLATE_DIR}/#{t.name}")
     source = "#{TEMPLATE_DIR}/#{html_template}"
     destination = t.name
