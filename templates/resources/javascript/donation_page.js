@@ -1,19 +1,18 @@
 function selectPaymentType(){
-    var paymentType = document.getElementById("payment_type").value;
+
+    var creditRadio = document.getElementById("credit_payment_method");
+    var checkRadio = document.getElementById("check_payment_method");
+
+
     var credit = document.getElementById("credit_payment_type");
     var check = document.getElementById("check_payment_type");
 
-    if (paymentType == "Check"){
-        credit.className = "hidden";
-        check.className = "notHidden";
-    }
-    else if (paymentType == "Credit") {
+    if (creditRadio.checked) {
         check.className = "hidden";
         credit.className = "notHidden";
-    }
-    else {
-        check.className = "hidden";
+    } else {
         credit.className = "hidden";
+        check.className = "notHidden";
     }
 }
 

@@ -8,12 +8,12 @@ require 'about_page_objects'
 require 'about_radio_maps'
 require 'about_models'
 require 'about_controllers'
+require 'about_controller_population'
 require 'about_controller_verification'
 
 
 
 # TODO
-# populate_data
 # process pages
 # modal dialogs
 # models containing models

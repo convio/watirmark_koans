@@ -32,7 +32,7 @@
     background: black;
     padding: 0.1em 0 0.2em 0;
 }
-p.hidden {
+.hidden {
     display: none;
 }
 p.errorMessage {
