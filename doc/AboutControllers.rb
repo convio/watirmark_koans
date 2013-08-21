@@ -34,6 +34,7 @@ end
     ruby %Q{
 class Contact < Watirmark::WebPage::Controller
   @view = ContactPage
+  @model = ContactModel
 end
 }
   end
