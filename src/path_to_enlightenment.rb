@@ -5,16 +5,16 @@ $LOAD_PATH << File.dirname(__FILE__)
 require 'about_watirmark_koans'
 require 'about_mvc'
 require 'about_page_objects'
+require 'about_radio_maps'
 require 'about_models'
 require 'about_controllers'
 require 'about_controller_verification'
-require 'about_radio_maps'
+
 
 
 # TODO
 # populate_data
 # process pages
-# radio maps
 # modal dialogs
 # models containing models
 # *_until controller actions
