@@ -15,7 +15,8 @@ begin
   require 'watirmark'
   require_relative "extensions"
 rescue LoadError
-  raise "Please run 'bundle install' to get the koan dependencies"
+  raise "Please run 'bundle install' to get the koan dependencies or" \
+        "check the 'Run the script in context of the bundle option' in 'Edit Configuration.'"
 end
 
 require_relative 'page_helpers'
