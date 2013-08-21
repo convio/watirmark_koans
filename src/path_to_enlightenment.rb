@@ -8,6 +8,7 @@ require 'about_page_objects'
 require 'about_models'
 require 'about_controllers'
 require 'about_controller_verification'
+require 'about_radio_maps'
 
 
 # TODO
