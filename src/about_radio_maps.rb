@@ -3,7 +3,7 @@ require_relative 'edgecase'
 class AboutRadioMaps < EdgeCase::Koan
 
   def setup
-    show_page "radio_map_object.html"
+    show_page "radio_map.html"
   end
 
   class RadioPage < Watirmark::Page
@@ -14,13 +14,21 @@ class AboutRadioMaps < EdgeCase::Koan
   end
 
   def test_radio_maps_basic
+    assert_equal __, browser.radio(:id, 'status_radio_on').set?
     RadioPage.new.status = "On"
-    assert browser.radio(:id, 'status_radio_unknown').set?, "Unknown Radio has not been set. Have you added it to the view?"
+    assert_equal __, browser.radio(:id, 'status_radio_on').set?
+  end
+
+  def test_radio_maps_next
+    assert_equal __, browser.radio(:id, 'status_radio_unknown').set?
+    assert_nothing_raised { RadioPage.new.status = "Unknown" }
+    assert_equal __, browser.radio(:id, 'status_radio_unknown').set?
   end
 
   def test_radio_maps_advanced
-    RadioPage.new.status = "on"
-    assert browser.radio(:id, 'status_radio_unknown').set?, "Unknown Radio has not been set. Have you added another string?"
+    assert_equal __, browser.radio(:id, 'status_radio_on').set?
+    assert_nothing_raised{ RadioPage.new.status = "on" }
+    assert_equal __, browser.radio(:id, 'status_radio_on').set?
   end
 
 end

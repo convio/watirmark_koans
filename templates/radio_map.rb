@@ -5,7 +5,7 @@ template = Template::Example.new do
 <table>
   <tr valign="top">
     <td>
-      <input type="radio" name="status_radio" id="status_radio_on" value="0" checked="checked">
+      <input type="radio" name="status_radio" id="status_radio_on" value="0">
       <label for="status_radio_on"> On </label>
     </td>
   </tr>

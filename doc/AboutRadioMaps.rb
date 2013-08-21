@@ -15,6 +15,18 @@ end
 }
   end
 
+  def sample_radio_map_2
+    ruby %Q{
+class RadioPage < Watirmark::Page
+  keyword(:status, {
+          "On" => 0,
+          "Off" => 1,
+          "Unknown" => 2
+  })                   { browser.radio(:name, "status_radio") }
+end
+}
+  end
+
   def set_radio
     ruby %Q{
 RadioPage.new.status = "On"
@@ -48,7 +60,19 @@ end
     <p>Then to automate the clicking of the radio button, you just say:
     #{set_radio}
 
-    <p>Add the Unknown radio button value to the keyword and set the Unknown radio button to continue.
+    <p>Set the radio button to on
+    }
+  end
+
+  document :test_radio_maps_next, "Radio Maps Continued" do
+    %Q{
+      <p>The second parameter for the keyword is a hash, so to add an extra link is very simple.
+
+      #{sample_radio_map_2}
+
+      <p>Now the Unknown radio button is able to be set through the values.
+
+      <p> To continue, add Unknown radio button to the keyword and set the radio button to the Unknown radio button.
     }
   end
 
@@ -63,7 +87,7 @@ end
       <p>Here, the status of the radio button can now be set with "On" and "on". It is no longer case sensitive.
          The string array is now set to the value.
 
-      <p>Add "unknown" as a string for the Unknown radio button value and set the Unknown radio button to continue.
+      <p>Add "on" as a string for the On radio button value and set the On radio button to continue.
 
     }
   end
