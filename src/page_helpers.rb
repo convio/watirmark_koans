@@ -28,5 +28,11 @@ module PageHelpers
     $koan_browser.goto file_path('koans.html')
     $koan_browser.window.resize_to(930, 1100)
   end
+
+  class ModalPageHelper < Watirmark::Page
+    def modalbrowser
+      $koan_browser
+    end
+  end
 end
 
