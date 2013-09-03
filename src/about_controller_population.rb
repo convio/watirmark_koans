@@ -38,7 +38,6 @@ class AboutControllerPopulation < EdgeCase::Koan
     show_page "donation_page.html"
     assert_nothing_raised do
       donor = DonorModel.new
-      donor.payment_type = "Credit"
       donor.credit_card = "4111111111111111"
       donor.cvv = "111"
       DonorPopulateKeyword.new(donor).create
