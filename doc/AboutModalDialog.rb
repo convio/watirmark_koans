@@ -4,60 +4,41 @@ module AboutModalDialogDoc
   include DocHelpers
   extend self
 
-  def include_modal_dialog
-    ruby %Q{include Watirmark::Dialogs}
+  def modal_exists
+    ruby %Q{modal_exists?}
   end
 
-  def modal_dialog_view
-    ruby %Q{
-class ModalPage < Watirmark::Page
-  keyword(:modalbutton) { browser.button(:id, 'opener') }
-  keyword(:firstname) { browser.text_field(:id, 'first_name_text') }
-  keyword(:lastname) { browser.text_field(:id, 'last_name_text') }
-end
-    }
-  end
-
-  def show_with_modal_dialog
+  def with_modal_dialog
     ruby %Q{
 with_modal_dialog do
-  ModalPage.new.firstname = "John"
-  ModalPage.new.lastname = "Doe"
+  # populate dialog here
 end
     }
   end
 
-  document :test_include_modal_dialog, "Modal Dialog" do
+  document :test_modal_dialog_exists, "Modal Dialog" do
     %Q{
-    <p>Modal Dialogs are new windows that popup from other clicking links or buttons. Watir-Webdriver focuses on the
-       first browser that is opened up and when a new window pops up, it has to refocus. Watirmark allows modal
-       dialogs to be handled by Watir-Webdriver smoothly.
+    <p>Modal Dialogs are new windows that popup from either clicking links or buttons. Watirmark focuses on the
+       first browser that is opened up and when a new window pops up, it has to refocus to the new browser. With
+       Watirmarks Dialog module, it allows modal dialogs to be handled by Watir-Webdriver smoothly.
 
-    <p>To use the modal dialog methods, you have to first include the module.
-       #{include_modal_dialog}
-
-    <p>To continue, include the Watirmark Dialogs module
-
+    <p>With the method #{modal_exists} it is easy to determine if there is a modal dialog present.
     }
   end
 
   document :test_modal_dialog, "Modal Dialog" do
     %Q{
-      <p>From the previous lesson, you have seen the method 'with_modal_dialog'. This method allows the browser to focus
-         on the new window that has popped up. Everything in the do-block will be done in the context of the popup.
+    <p>That was simple. Its just as easy to run populate actions on Modal Dialogs as well.
 
-      <p>The keywords in the view that are associated with the modal popup can be put into the same view as the view that
-         brought up the modal dialog.
+    #{with_modal_dialog}
 
-      #{modal_dialog_view}
+    <p>The method with_modal_dialog allows you to pass in a block of code that would be used to populate a
+    page object just as you normally would if there were no dialogs present. What this method does is it refocuses
+    the browser object to the dialog window. This gives your view object access to the dialogs page objects when you call
+    browser.text_field or browser.checkbox.
 
-      <p>Here, the modalbutton is connected to the button that opens the new window. Next, the firstname and lastname
-         are part of the modal dialog. If you try to populate these keywords when the modal dialog is not present, then
-         it will fail. To make the keywords populate correctly, with_modal_dialog must be used.
-
-      #{show_with_modal_dialog}
-
-      <p>After everything is executed within the block, the modal dialog will be closed.
+    <p>To continue you need to update the ModalController's populate_data method to use the with_modal_dialog in order
+    to populate first and last name successfully.
     }
   end
 end

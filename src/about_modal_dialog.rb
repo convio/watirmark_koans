@@ -1,40 +1,34 @@
 require_relative 'edgecase'
 
 class AboutModalDialog < EdgeCase::Koan
+  include Watirmark::Dialogs
 
-  def setup
-    show_page "modal_dialog.html"
-  end
-
-  class ModalPage < PageHelpers::ModalPageHelper
+  class ModalView < ModalPage
     keyword(:modalbutton) { browser.button(:id, 'opener') }
-    keyword(:firstname) { modalbrowser.text_field(:id, 'first_name_text') }
-    keyword(:lastname) { modalbrowser.text_field(:id, 'last_name_text') }
-    def modalbrowser
-      $koan_browser
+    keyword(:firstname) { browser.text_field(:id, 'first_name_text') }
+    keyword(:lastname) { browser.text_field(:id, 'last_name_text') }
+  end
+
+  class ModalController < Watirmark::WebPage::Controller
+    @view = ModalView
+
+    def populate_data
+      @view.modalbutton.click
+      super
     end
   end
 
-  def test_include_modal_dialog
-    ModalPage.new.modalbutton.click
-    assert_nothing_raised do
-      with_modal_dialog do
-        assert_equal __, true
-      end
-    end
+  def test_modal_dialog_exists
+    show_page "modal_dialog.html"
+    ModalView.new.modalbutton.click
+    assert_equal __, modal_exists?
   end
 
   def test_modal_dialog
-    ModalPage.new.modalbutton.click
-    with_modal_dialog do
-      assert_equal __, ModalPage.new.firstname.text.empty?
-      ModalPage.new.firstname = "John"
-      ModalPage.new.lastname = "Doe"
-      assert_equal __, ModalPage.new.firstname.value
+    show_page "modal_dialog.html"
+    assert_nothing_raised do
+      ModalController.new(:firstname => "Jonny",
+                          :lastname => "Depp").run :create
     end
-    assert false, "Modal Dialogs are no longer a difficulty."
   end
-
-
-
 end

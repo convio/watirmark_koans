@@ -1,7 +1,9 @@
 module PageHelpers
+
   def show_page name
     goto file_path(name)
     update_doc
+    close_dialog if $koan_browser.windows.size > 1
   end
 
   def browser
@@ -9,7 +11,6 @@ module PageHelpers
       Watirmark::Page.browser = $koan_browser.frame(:id, 'example')
     end
   end
-
 
   private
 
@@ -29,9 +30,13 @@ module PageHelpers
     $koan_browser.window.resize_to(930, 1100)
   end
 
-  class ModalPageHelper < Watirmark::Page
-    def modalbrowser
-      $koan_browser
+  def close_dialog
+    $koan_browser.windows[1].close
+  end
+
+  class ModalPage < Watirmark::Page
+    def browser
+      $koan_browser.windows.size > 1 ? $koan_browser : super
     end
   end
 end
