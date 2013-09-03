@@ -16,7 +16,6 @@ require 'about_modal_dialog'
 
 # TODO
 # process pages
-# modal dialogs
 # models containing models
 # *_until controller actions
 # before_each/all
