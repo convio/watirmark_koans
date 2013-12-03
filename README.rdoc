@@ -43,28 +43,25 @@ following command
 == Generating the Koans
 
 A fresh checkout will not include the koans, you will need to generate
-them.
+them. 
 
-    [ruby_koans] $ rake gen                       # generates the koans directory
+We will be using the rake that was installed by the previous bundle install command 
+in order to generate the koans so we need to be sure to run rake in the context of 
+bundler. 
 
-If you need to regenerate the koans, thus wiping your current `koans`,
+If you are using the comman prompt using the following the generate or regenerate the koans.
+(Some IDE's will have a run configuration that enables you to run in the context of bundle)
 
-    [ruby_koans] $ rake regen                     # regenerates the koans directory, wiping the original
+    c:\watirmark_koans>bundle exec rake gen                       # generates the koans directory
+
+    c:\watirmark_koans>exec rake regen                     # regenerates the koans directory, wiping the original
 
 == The Path To Enlightenment
 
-You can run the tests through rake or by calling the file itself (rake is the
-recommended way to run them as we might build more functionality into this task).
+To start the path to enlightenment run the rake task "walk_the_path". You will continue to run
+this task as you progress through the koans
 
-*nix platforms, from the koans directory
-
-    [ruby_koans] $ rake                           # runs the default target :walk_the_path
-    [ruby_koans] $ ruby path_to_enlightenment.rb  # simply call the file directly
-
-Windows is the same thing
-
-    c:\ruby_koans\rake                             # runs the default target :walk_the_path
-    c:\ruby_koans\ruby path_to_enlightenment.rb    # simply call the file directly
+c:\watirmark_koans>bundle exec rake walk_the_path
 
 = License
 
