@@ -19,26 +19,26 @@ Some, however, require you to supply your own answer.  If you see the method +__
 double underscore) listed, it is a hint to you to supply your own code in order to
 make it work correctly.
 
-== Installing Ruby
+== Setting up the Koans
 
 If you do not have Ruby setup, please visit http://ruby-lang.org/en/downloads/ for
-operating specific instructions.  In order to run this you need ruby and rake
-installed. To check the installations simply type:
+operating specific instructions.  In order to run this you need the ruby version 2.0 
+or greater.
 
-*nix platforms from any terminal window:
-
-   [~] $ ruby --version
-   [~] $ rake --version
-
-Windows from the command prompt (cmd.exe)
-
-   c:\ruby --version
-   c:\rake --version
-
-If you don't have rake installed, just run `gem install rake`
-
-Any response for Ruby with a version number greater than 1.8 is fine (should be
-around 1.8.6 or more). Any version of rake will do.
+You will also need to install the gem bundler. Type the following command in your 
+comand prompt after ruby has been installed
+      
+   c:>gem bundle install
+   
+Watirmark Koans has a Gemfile and Gemfile lock inside the project which are used for
+managing all the projects gem dependencies. In order to install these gems using the
+bundler gem we previously installed cd into the project directory and type to the 
+following command
+   
+   c:\watirmark_koans>bundle install
+   ....
+   ....
+   Your bundle is complete!
 
 == Generating the Koans
 
