@@ -49,8 +49,8 @@ We will be using the rake that was installed by the previous bundle install comm
 in order to generate the koans so we need to be sure to run rake in the context of 
 bundler. 
 
-If you are using the comman prompt using the following the generate or regenerate the koans.
-(Some IDE's will have a run configuration that enables you to run in the context of bundle)
+If you are using the command prompt use the following the generate or regenerate the koans.
+(Some IDE's will have a run configuration that enables you to run rake in the context of bundle)
 
     c:\watirmark_koans>bundle exec rake gen                       # generates the koans directory
 
