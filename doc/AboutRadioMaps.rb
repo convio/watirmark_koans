@@ -60,7 +60,8 @@ end
     <p>Then to automate the clicking of the radio button, you just say:
     #{set_radio}
 
-    <p>Set the radio button to on
+    <p>In this test we are verifying that the radio button is not set to on and then verifying that it has been set to on.
+       Update the assert_equal methods so that they pass in order to continue.
     }
   end
 
@@ -72,7 +73,8 @@ end
 
       <p>Now the Unknown radio button is able to be set through the values.
 
-      <p> To continue, add Unknown radio button to the keyword and set the radio button to the Unknown radio button.
+      <p>To continue, add Unknown radio button to the keyword so that RadioPage knows how to manipulate the unknown
+         radio button. Then update the assert_equal methods so that they pass.
     }
   end
 
@@ -87,7 +89,7 @@ end
       <p>Here, the status of the radio button can now be set with "On" and "on". It is no longer case sensitive.
          The string array is now set to the value.
 
-      <p>Add "on" as a string for the On radio button value and set the On radio button to continue.
+      <p>Add "on" as a string for the On radio button value and update the assert_equal methods to continue.
 
     }
   end

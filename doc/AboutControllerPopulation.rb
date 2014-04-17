@@ -72,8 +72,9 @@ end
 
     #{populate_data_override}
 
-    <p>To continue make the controller by overriding the populate_data method in order to populate the form.
-    </p>
+    <p>To continue make the DonorPopulateData controller by overriding the populate_data method in order to populate the form.
+       Be sure to place the DonorPopulateData controller below the DonorModel and DonorView so
+       that ruby knows how to interperate those objects.
     }
   end
 
@@ -92,7 +93,8 @@ end
 
     #{populate_keyword_override}
 
-    <p>To continue create the controller by overriding the populate_check_number and pouplate_credit_card methods</p>
+    <p>To continue create the DonorPopulateKeyword controller by overriding the populate_check_number and pouplate_credit_card methods.
+       Again place this controller under DonorView and DonorModel so that ruby knows how to interperate them.
     }
   end
 

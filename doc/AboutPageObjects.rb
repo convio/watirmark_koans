@@ -69,6 +69,10 @@ assert_equal page.first_name.html '<input id="first_name" type="text" value="Suz
 
     <p>In Watirmark we often refer to the page objects as Views since they
        represent the View portion of the Model-View-Controller design.
+
+    <p>In this example we are getting the list of keywords from ContactPage. The keywords
+       method returns an array of keywords that are in a view. To continue udpate
+       the test so that the assert_equal passes.
     }
   end
 
@@ -82,6 +86,9 @@ assert_equal page.first_name.html '<input id="first_name" type="text" value="Suz
     <p> To make sure we share the same browser across all of our tests, the Watir-Webdriver
         instance is stored in Page.browser and used in the page objects:
        #{global_page_context}
+
+    <p>In this test we are trying to demonstrate that all Views or Page Objects point to the same
+       browser instance. To continue update the test so that the assert_equal passes.
 
     }
   end
@@ -98,6 +105,10 @@ assert_equal page.first_name.html '<input id="first_name" type="text" value="Suz
     <p>Of course since they are Watir objects you can also query them for anything you could do with a normal Watir element
 
     #{call_watir_methods}
+
+    <p>In this test we are setting the first name field in the left pane to "Fred", and now we are verifying
+       that the value of the text field is updated correctly. To continue update the test so that the assert_equal
+       passes by setting it to be the value that is returned by page.first_name.value.
     }
   end
 
@@ -108,6 +119,8 @@ assert_equal page.first_name.html '<input id="first_name" type="text" value="Suz
     <p> Page Objects can also be subclassed. When you create a subclass, it will automatically inherit the
         keywords defined in the parent class. So in this example, the UserPage class should also inherit the
         keywords :first_name and :last_name.
+
+    <p> To continue update the assert_equal with an array of the keywords from UserPage and Contact Page.
     }
   end
 end

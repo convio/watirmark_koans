@@ -25,7 +25,7 @@ end
   document :test_about_page_object_updates, "Page Objects", "Updating Keywords" do
     %Q{
     #{page_object_view}
-    <p>In this test, we've just gotten a new release and a test that used to pass, but now fails.
+    <p>In this test, we've just gotten a new release and a test that used to pass now fails.
        We know that the developer has made some changes to the UI so let's look there.
 
     <p>You should be able to inspect the HTML for any element by right clicking the element.

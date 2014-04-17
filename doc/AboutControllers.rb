@@ -114,8 +114,9 @@ contact.verify
 
     #{using_a_controller}
 
-    <p>Add a controller for this test to continue.
-
+    <p>In order to continue you will need to implement the Contact controller like the one above.
+       The controller will need to refrence the ContactPage as its view. Be sure to place this controller under both ContactPage and ContactModel so that ruby
+       knows how to interpret them.
     }
   end
 
@@ -141,7 +142,8 @@ contact.verify
 
     <p>This is great for the most common use case of "I just need a contact and don't care about the details"
 
-    <p>To continue, make the controller for this test case use the model to populate the fields.
+    <p>To continue, make the controller for this test case use the ContactModel in order to populate the fields
+       and update the test so that assert_equal matches the model's class name.
 
     }
   end
@@ -159,6 +161,8 @@ contact.verify
       #{page_object_view_with_navigation}
 
       <p>Once we've navigated to the right edit page we populate all of the fields specified, just like in a create
+
+      <p>To continue just update the assertion to true.
     }
   end
 

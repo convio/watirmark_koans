@@ -76,6 +76,8 @@ end
 
     <p>That will go through each value in the model and make sure the current values of the HTML elements
        match the values provided.
+
+    <p>To continue just update the assertion to true.
     }
   end
 
@@ -106,6 +108,9 @@ end
        to override every field, you would instead create a new controller designed for that page and
        pass in the same model you used to create the record. These overrides are just intended for smaller
        corner cases.
+
+    <p>To continue update the ContactVerificationOverride controller with the verify_first_name and verify_last_name
+       methods like the example above.
     }
   end
 
@@ -118,6 +123,8 @@ end
 
     <p>There are two other types of keywords: 'populate_keyword' used for create/edit and 'private_keyword'
        which are keywords passed in but not directly populated. We'll show examples of each of those later.
+
+    <p>To continue update assert to true
     }
   end
 end

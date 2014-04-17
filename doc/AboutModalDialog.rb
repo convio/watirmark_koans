@@ -23,6 +23,9 @@ end
        Watirmarks Dialog module, it allows modal dialogs to be handled by Watir-Webdriver smoothly.
 
     <p>With the method #{modal_exists} it is easy to determine if there is a modal dialog present.
+
+    <p>In this test we are trying to demonstrate how we can easliy check if a dialog exists. To
+       Continue update the assert_equal so that the test passes.
     }
   end
 

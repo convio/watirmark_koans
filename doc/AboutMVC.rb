@@ -33,6 +33,8 @@ module AboutMVCDoc
          They are responsible for populating the fields and reading back values. When you instantiate a controller,
          you give it a Model and tell it an action (create, edit, verify, etc).
 
+      <p>To continue correct the assertion in the test so that the test passes.
+
       }
   end
 
