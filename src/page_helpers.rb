@@ -1,4 +1,5 @@
 module PageHelpers
+  extend self
 
   def show_page name
     goto file_path(name)
@@ -10,6 +11,10 @@ module PageHelpers
     @@browser ||= begin
       Watirmark::Page.browser = $koan_browser.frame(:id, 'example')
     end
+  end
+
+  def close_dialog
+    $koan_browser.windows[1].close
   end
 
   private
@@ -28,10 +33,6 @@ module PageHelpers
     $koan_browser = Watirmark::Page.browser
     $koan_browser.goto file_path('koans.html')
     $koan_browser.window.resize_to(930, 1100)
-  end
-
-  def close_dialog
-    $koan_browser.windows[1].close
   end
 
   class ModalPage < Watirmark::Page

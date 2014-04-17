@@ -70,6 +70,6 @@ class AboutModels < EdgeCase::Koan
 
   def test_model_traits_containing_traits
     assert_match __(/first_/), DonorModel.new.first_name
-    assert_equal __, DonorMOdel.new.cvv
+    assert_equal __, DonorModel.new.cvv
   end
 end

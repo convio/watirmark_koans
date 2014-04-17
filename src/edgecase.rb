@@ -161,6 +161,7 @@ module EdgeCase
   end
 
   class Sensei
+    include PageHelpers
     attr_reader :failure, :failed_test, :pass_count
 
     in_ruby_version("1.8") do
@@ -273,6 +274,7 @@ module EdgeCase
         show_progress
         show_html_koans
       else
+        close_dialog if $koan_browser.windows.size > 1
         end_screen
       end
     end
