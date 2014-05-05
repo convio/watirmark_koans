@@ -1,7 +1,7 @@
 = Watirmark Koans
 
 The Watirmark Koans walk you along the path to enlightenment in order to learn the Watirmark Framework.
-Waitrmark is used to create automated unit tests that navigate through a browser just as an individual would.
+Watirmark is used to create automated unit tests that navigate through a browser just as an individual would.
 The goal is to learn how to use Watirmark in order to write clean automated tests. The koans will take you through
 Watirmarks MVC framework explaining how Models, Views, and Controllers are created and what they are intended to do.
 
@@ -28,7 +28,7 @@ or greater.
 You will also need to install the gem bundler. Type the following command in your 
 comand prompt after ruby has been installed
       
-   c:>gem bundle install
+   c:>gem install bundler
    
 Watirmark Koans has a Gemfile and Gemfile lock inside the project which are used for
 managing all the projects gem dependencies. In order to install these gems using the
