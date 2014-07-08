@@ -8,7 +8,7 @@ module AboutModelsDoc
     ruby %Q{
 class ContactPage < Watirmark::Page
   keyword(:first_name) { browser.text_field(:id => "first.name") }
-  keyword(:middle_name) { browser.text_field(:id => "first.name") }
+  keyword(:middle_name) { browser.text_field(:id => "middle.name") }
   keyword(:last_name)  { browser.text_field(:id => "last.name")  }
 end
 
