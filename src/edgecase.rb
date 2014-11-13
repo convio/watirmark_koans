@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # -*- ruby -*-
 ENV['NO_COLOR'] = 'true'
+require 'minitest'
 require 'test/unit/assertions'
 begin
   require 'win32console'
@@ -392,6 +393,7 @@ module EdgeCase
     include PageHelpers
 
     attr_reader :name, :failure, :koan_count, :step_count, :koan_file
+    attr_accessor :assertions
 
     def initialize(name, koan_file=nil, koan_count=0, step_count=0)
       @name = name
@@ -399,6 +401,7 @@ module EdgeCase
       @koan_count = koan_count
       @step_count = step_count
       @koan_file = koan_file
+      @assertions = 0
     end
 
     def passed?

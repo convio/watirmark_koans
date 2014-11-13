@@ -9,7 +9,7 @@ module PageHelpers
 
   def browser
     @@browser ||= begin
-      Watirmark::Page.browser = $koan_browser.frame(:id, 'example')
+      Watirmark::Page.browser = $koan_browser.iframe(:id, 'example')
     end
   end
 
