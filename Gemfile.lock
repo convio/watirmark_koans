@@ -1,61 +1,70 @@
 GIT
   remote: git://github.com/convio/watir-webdriver.git
-  revision: c2b0540b30aef1cb175825e24e7bf63b23f5b4f4
+  revision: e89795db262db0d7749924332bc70cdb21d9c1e6
   specs:
-    watir-webdriver (0.6.2.1)
+    watir-webdriver (0.6.10.2)
       selenium-webdriver (>= 2.18.0)
 
 GIT
   remote: git://github.com/convio/watirmark.git
-  revision: 6d44f3e86af0184dd9b898b41f4191752765f36f
+  revision: 90f4d016afbce7f9d90749a8e305b7e6be05d98e
   specs:
-    watirmark (5.23.0)
-      activesupport (~> 3.1.11)
-      american_date (~> 1.0)
-      i18n (~> 0.6.1)
+    watirmark (5.27.2)
+      activesupport (~> 4.0)
+      american_date (~> 1.1.0)
+      headless
       logger (~> 1.2.8)
-      nokogiri (~> 1.5.10)
-      selenium-webdriver (~> 2.39.0)
-      thor
-      uuid (~> 2.3.6)
-      watir-webdriver (>= 0.6.1)
+      nokogiri (~> 1.6.0)
+      thor (~> 0.19.1)
+      uuid (~> 2.3.7)
+      watir-webdriver (>= 0.6.2)
 
 GEM
   remote: http://rubygems.org/
   specs:
-    activesupport (3.1.12)
-      multi_json (~> 1.0)
+    activesupport (4.1.7)
+      i18n (~> 0.6, >= 0.6.9)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.1)
+      tzinfo (~> 1.1)
     american_date (1.1.0)
-    childprocess (0.4.0)
+    childprocess (0.5.5)
       ffi (~> 1.0, >= 1.0.11)
-    ffi (1.9.3)
-    ffi (1.9.3-x86-mingw32)
-    i18n (0.6.9)
+    ffi (1.9.6)
+    headless (1.0.2)
+    i18n (0.6.11)
+    json (1.8.1)
     logger (1.2.8)
-    macaddr (1.6.1)
-    multi_json (1.8.4)
-    nokogiri (1.5.11)
-    nokogiri (1.5.11-x86-mingw32)
+    macaddr (1.7.1)
+      systemu (~> 2.6.2)
+    mini_portile (0.6.1)
+    minitest (5.4.3)
+    multi_json (1.10.1)
+    nokogiri (1.6.4.1)
+      mini_portile (~> 0.6.0)
     rake (0.9.2.2)
-    rubyzip (1.1.0)
-    selenium-webdriver (2.39.0)
-      childprocess (>= 0.2.5)
+    rubyzip (1.1.6)
+    selenium-webdriver (2.44.0)
+      childprocess (~> 0.5)
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
-      websocket (~> 1.0.4)
-    systemu (2.5.2)
-    thor (0.18.1)
-    uuid (2.3.6)
+      websocket (~> 1.0)
+    systemu (2.6.4)
+    thor (0.19.1)
+    thread_safe (0.3.4)
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
+    uuid (2.3.7)
       macaddr (~> 1.0)
-    websocket (1.0.7)
+    websocket (1.2.1)
 
 PLATFORMS
   ruby
-  x86-mingw32
 
 DEPENDENCIES
-  childprocess (= 0.4.0)
   rake (= 0.9.2.2)
+  selenium-webdriver (~> 2.43)
   systemu
   watir-webdriver!
   watirmark!
