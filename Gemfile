@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 gem 'watirmark', :github => 'convio/watirmark'
 gem 'watir-webdriver', :github => 'convio/watir-webdriver'
 gem 'selenium-webdriver', '~>2.43'
